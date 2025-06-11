@@ -1,0 +1,83 @@
+.box-connection-message {
+
+    
+
+}
+
+.connection-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 300px;
+  margin: 20px auto;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group label {
+  color: RGB(200, 200, 200);
+  font-size: 1.4vh;
+  font-weight: bold;
+}
+
+.input-group input {
+  padding: 12px 16px;
+  background: linear-gradient(145deg, RGB(20, 20, 20), RGB(35, 35, 35));
+  border: 1px solid RGB(15, 15, 15);
+  border-radius: 8px;
+  color: RGB(200, 200, 200);
+  font-size: 1.4vh;
+  font-family: 'Fira Code', monospace;
+  box-shadow: 
+    inset 2px 2px 4px rgba(0, 0, 0, 0.3),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #5d69c4;
+  box-shadow: 
+    inset 2px 2px 4px rgba(0, 0, 0, 0.3),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.05),
+    0 0 10px rgba(93, 105, 196, 0.3);
+}
+
+.input-group input::placeholder {
+  color: RGB(120, 120, 120);
+}
+
+.send-button {
+  background: linear-gradient(145deg, #5d69c4, #4a56b3);
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.4vh;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 
+    inset 2px 2px 4px rgba(0, 0, 0, 0.3),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.1);
+  margin-top: 10px;
+}
+
+.send-button:hover {
+  background: linear-gradient(145deg, #6d79d4, #5a66c3);
+  transform: translateY(-2px);
+  box-shadow: 
+    inset 2px 2px 4px rgba(0, 0, 0, 0.3),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.1),
+    0 4px 12px rgba(93, 105, 196, 0.4);
+}
+
+.send-button:active {
+  background: linear-gradient(145deg, #4d59b4, #3a46a3);
+  transform: translateY(0px);
+}

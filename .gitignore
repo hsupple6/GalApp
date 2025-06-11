@@ -1,2 +1,3 @@
 dist/
 GalApp-darwin-arm64/
+node_modules/

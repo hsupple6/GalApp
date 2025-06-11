@@ -1,0 +1,43 @@
+.App {
+  text-align: center;
+
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  background-color: RGB(17, 17, 17);
+  overflow: hidden;
+
+}
+
+.app-header {
+  width: 90%;
+  height: 10%;
+  right: 0;
+  top: 0;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  background-color: RGB(17, 17, 17);  
+  border-bottom: 1px solid RGB(38, 38, 38);
+}
+
+.app-header-title {
+  font-size: 6vh;
+  color: RGB(255, 255, 255);
+  left: 0;
+  position: absolute;
+}
+
+.gradient-text {
+  background: linear-gradient(45deg, #f00d0d, #128e85, #551fbb, #19df83, #feca57);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  padding: 8px 16px;
+  border-radius: 8px;
+  display: inline-block;
+  animation: gradient-shift 10s ease infinite;
+}

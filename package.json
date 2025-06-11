@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
+    "start": "concurrently -k \"npm run start-react\" \"npm run start-electron\"",
+    "start-react": "cd renderer && npm start",
+    "start-electron": "wait-on tcp:3000 && electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "electron-builder --mac --arm64"
   },
@@ -11,9 +13,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "concurrently": "^9.1.2",
     "electron": "^36.4.0",
     "electron-builder": "^26.0.12",
-    "electron-packager": "^17.1.2"
+    "electron-packager": "^17.1.2",
+    "wait-on": "^8.0.3"
   },
   "dependencies": {
     "electron-updater": "^6.6.2"
