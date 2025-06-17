@@ -1,0 +1,134 @@
+.find-ip-container {
+  padding: 20px;
+  background: transparent;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.ip-discovery-section {
+  width: 100%;
+}
+
+.ip-discovery-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.ip-discovery-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 18px;
+}
+
+.discover-button {
+  background: #007bff;
+  color: RGB(128,128,128);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.discover-button:hover:not(:disabled) {
+  background: #0056b3;
+}
+
+.discover-button:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+.scanning-message {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 20px;
+}
+
+.ip-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ip-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: RGB(128,128,128);;
+  border: 2px solid RGB(128,128,128);;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.ip-item:hover {
+  border-color: #007bff;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.1);
+}
+
+.ip-item.selected {
+  border-color: #28a745;
+  background: RGB(108,108,108);;
+  box-shadow: 0 2px 8px rgba(40, 167, 69, 0.1);
+}
+
+.ip-info {
+  flex: 1;
+}
+
+.ip-address {
+  font-weight: bold;
+  color: #333;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.ip-status {
+  color: #28a745;
+  font-size: 14px;
+}
+
+.saved-indicator {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.ip-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ip-select-indicator {
+  color: #28a745;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.save-ip-button {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.3s;
+}
+
+.save-ip-button:hover {
+  background: #545b62;
+}
+
+.no-ips {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 20px;
+}

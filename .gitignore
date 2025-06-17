@@ -1,3 +1,10 @@
-dist/
-GalApp-darwin-arm64/
 node_modules/
+build/
+dist/
+.DS_Store
+*.log
+electron-store.json
+coverage/
+*.local
+*.swp
+*.sublime-workspace
