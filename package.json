@@ -7,7 +7,9 @@
     "start-react": "cd renderer && npm start",
     "start-electron": "wait-on tcp:3002 && electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "electron-builder --mac --arm64"
+    "build": "electron-builder --mac --arm64",
+    "dist": "electron-builder",
+    "main": "main.js"
   },
   "keywords": [],
   "author": "",
@@ -26,7 +28,8 @@
   "build": {
     "appId": "com.example.galapp",
     "mac": {
-      "category": "public.app-category.productivity"
+      "category": "public.app-category.productivity",
+      "target": "dmg"
     },
     "publish": [
       {

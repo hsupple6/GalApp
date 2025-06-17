@@ -588,25 +588,26 @@ ipcMain.handle('update-env-file', async (event, key, value) => {
 
 // Start galOS GUI server
 function startGalOSServer() {
-  const galosServerPath = path.join(__dirname, 'renderer', 'src', 'galos-gui', 'serve.cjs');
-  
-  // Check if the server file exists
-  if (!fs.existsSync(galosServerPath)) {
-    console.log('galOS GUI server file not found:', galosServerPath);
+  const guiDir = path.join(__dirname, 'renderer', 'src', 'gui');
+
+  // Check if package.json exists in guiDir
+  const pkgPath = path.join(guiDir, 'package.json');
+  if (!fs.existsSync(pkgPath)) {
+    console.log('No package.json found in renderer/src/gui, cannot start GUI server.');
     return;
   }
-  
+
   // Check if server is already running on port 3000
-  const testServer = http.get('http://localhost:3000/api/galbox-ip', (res) => {
+  const testServer = http.get('http://localhost:3000', (res) => {
     console.log('galOS GUI server is already running on port 3000');
     testServer.destroy();
   }).on('error', (err) => {
     // Server is not running, start it
-    console.log('Starting galOS GUI server...');
-    
-    // Start the server using Node.js
-    const galosServer = exec(`node "${galosServerPath}"`, {
-      cwd: path.join(__dirname, 'renderer', 'src', 'galos-gui')
+    console.log('Starting galOS GUI server with npm start...');
+
+    // Start the server using npm start
+    const galosServer = exec('npm start', {
+      cwd: guiDir
     }, (error, stdout, stderr) => {
       if (error) {
         console.error('Error starting galOS GUI server:', error);
@@ -614,29 +615,29 @@ function startGalOSServer() {
       }
       console.log('galOS GUI server output:', stdout);
     });
-    
+
     galosServer.stdout?.on('data', (data) => {
       console.log('galOS GUI server:', data.toString());
     });
-    
+
     galosServer.stderr?.on('data', (data) => {
       console.error('galOS GUI server error:', data.toString());
     });
-    
+
     // Store the process reference for cleanup
     global.galosServerProcess = galosServer;
-    
+
     console.log('galOS GUI server started');
   });
-  
+
   // Set a timeout for the test request
   testServer.setTimeout(2000, () => {
     testServer.destroy();
-    console.log('Timeout checking if galOS GUI server is running, starting it...');
-    
-    // Start the server using Node.js
-    const galosServer = exec(`node "${galosServerPath}"`, {
-      cwd: path.join(__dirname, 'renderer', 'src', 'galos-gui')
+    console.log('Timeout checking if galOS GUI server is running, starting it with npm start...');
+
+    // Start the server using npm start
+    const galosServer = exec('npm start', {
+      cwd: guiDir
     }, (error, stdout, stderr) => {
       if (error) {
         console.error('Error starting galOS GUI server:', error);
@@ -644,18 +645,18 @@ function startGalOSServer() {
       }
       console.log('galOS GUI server output:', stdout);
     });
-    
+
     galosServer.stdout?.on('data', (data) => {
       console.log('galOS GUI server:', data.toString());
     });
-    
+
     galosServer.stderr?.on('data', (data) => {
       console.error('galOS GUI server error:', data.toString());
     });
-    
+
     // Store the process reference for cleanup
     global.galosServerProcess = galosServer;
-    
+
     console.log('galOS GUI server started');
   });
 }
