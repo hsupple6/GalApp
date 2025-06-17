@@ -1,0 +1,91 @@
+.home-container {
+  padding: 40px;
+  min-height: 100vh;
+  box-sizing: border-box; // Add this to include padding in width calculation
+  width: 100%;
+  background: radial-gradient(83.91% 83.91% at 50% 16.09%, #494B50 0%, #000 100%), #FFF;
+
+  h1 {
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+.spaces-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.space-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .space-preview {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .space-info {
+    padding: 1rem;
+
+    h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: #fff;
+    }
+
+    .space-date {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+  }
+
+  &.create-new {
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .create-new-content {
+      text-align: center;
+      flex-direction: column;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.6);
+
+      .plusButton {
+        font-size: 4rem;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    &:hover {
+      border-color: rgba(255, 255, 255, 0.4);
+      color: rgba(255, 255, 255, 0.8);
+    }
+  }
+}
+
+.home-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: rgba(255, 255, 255, 0.6);
+}

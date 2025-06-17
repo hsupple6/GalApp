@@ -1,0 +1,293 @@
+.focused-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.65);
+
+  // Add resizing cursor when actively resizing
+  &.resizing {
+    cursor: ew-resize !important;
+    
+    * {
+      cursor: ew-resize !important;
+      user-select: none;
+    }
+  }
+  
+  .focused-layout-container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    margin-top: 40px; /* Add top margin for spaceTitle and buttons */
+    border-radius: 15px 15px 0 0;
+  }
+  
+  // Hide the contents wrapper button in focused layout
+  .contents-wrapper {
+    display: none;
+  }
+  
+  .focused-layout-sidebar {
+    width: 250px; /* Default width, will be controlled by JavaScript */
+    min-width: 180px;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(32px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    position: relative; /* Required for absolute positioning of resize handle */
+    transition: width 0.3s ease;
+    
+    // Collapsed state
+    &.collapsed {
+      width: 40px !important;
+      min-width: 40px;
+      
+      .sidebar-header h3,
+      .contents-panel,
+      .sidebar-dropzone-container {
+        display: none;
+      }
+      
+      .toggle-sidebar-button {
+        margin-left: 0;
+      }
+    }
+    
+    .sidebar-header {
+      padding: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      background-color: rgba(0, 0, 0, 0.3);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      
+      h3 {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        margin: 0;
+        opacity: 0.8;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      
+      .toggle-sidebar-button {
+        background: none;
+        border: none;
+        color: rgba(255, 255, 255, 0.7);
+        cursor: pointer;
+        padding: 5px;
+        font-size: 12px;
+        border-radius: 4px;
+        
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+          color: white;
+        }
+      }
+    }
+    
+    /* Modify the contents-panel styles when in focused layout */
+    .contents-panel {
+      padding: 10px;
+      
+      ul {
+        li {
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+          }
+          
+          &.selected {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+          }
+        }
+      }
+    }
+    
+    /* Styles for the dropzone container in the sidebar */
+    .sidebar-dropzone-container {
+      padding: 10px 15px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: auto; /* Push it to the bottom of the sidebar */
+      
+      .focused-dropzone {
+        width: auto !important;
+      }
+    }
+    
+    .app-launcher {
+      padding: 15px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      background-color: rgba(0, 0, 0, 0.3);
+      
+      h3 {
+        margin: 0 0 10px 0;
+        font-size: 14px;
+        opacity: 0.7;
+        text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.8);
+      }
+      
+      .app-icons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        
+        button {
+          background-color: rgba(255, 255, 255, 0.1);
+          border: none;
+          border-radius: 6px;
+          padding: 8px 12px;
+          color: white;
+          cursor: pointer;
+          font-size: 12px;
+          transition: background-color 0.2s;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          
+          .app-icon {
+            opacity: 0.9;
+          }
+          
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+          }
+        }
+      }
+    }
+    
+    /* Sidebar resize handle */
+    .sidebar-resize-handle {
+      position: absolute;
+      width: 6px;
+      top: 0;
+      bottom: 0;
+      right: -3px; /* Position it on the right edge, half overlapping */
+      cursor: ew-resize;
+      background-color: transparent;
+      transition: background-color 0.2s;
+      z-index: 1001;
+      
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+      
+      &:active {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+    }
+  }
+  
+  .focused-layout-content {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.05);
+    position: relative;
+    
+    .focused-window-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden; /* Prevent content from overflowing */
+      
+      .window-body {
+        flex: 1;
+        overflow: auto;
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: inset 0 2px 0px rgba(255, 255, 255, 0.25);
+        border: solid 0.5px rgba(119, 119, 119, 0.5);
+      }
+    }
+    
+    .no-window-selected {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: rgba(255, 255, 255, 0.5);
+      background-color: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(32px);
+      
+      h3 {
+        margin: 0 0 10px 0;
+        font-size: 24px;
+        text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.8);
+      }
+      
+      p {
+        margin: 0;
+        font-size: 14px;
+        opacity: 0.7;
+      }
+    }
+    
+    /* TaskBar positioned at the bottom */
+    .focused-layout-taskbar {
+      height: 60px; /* Fixed height for taskbar */
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(32px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 10px;
+      
+      /* Style adjustments for the TaskBar component */
+      .taskbar {
+        width: 100%;
+        margin: 0;
+        position: relative;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+  
+  /* Chat panel in focused layout */
+  .focused-layout-chat {
+    width: auto; /* Width will be controlled by SpaceChat component */
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.8);
+    position: relative;
+    overflow: visible; /* Allow the resize handle to extend outside */
+    border-radius: 0 15px 0 0; /* container rounded corners don't apply bc position relative */
+    
+    /* This ensures the chat-wrapper and chat-panel use full height */
+    .chat-wrapper-focused {
+      height: 100%;
+      width: 100%;
+      
+      .chat-panel-focused {
+        margin-top: 0; /* Reset margin as we're nested inside focused-layout-container */
+        border-left: none; /* Remove duplicate border */
+        border-radius: 0;
+        
+        /* Fix any scrolling issues */
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        
+        /* Ensure messages area takes up available space */
+        .messages {
+          flex: 1;
+          overflow-y: auto;
+        }
+      }
+    }
+  }
+}

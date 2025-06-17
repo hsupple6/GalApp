@@ -1,0 +1,159 @@
+.models-list {
+  height: 100%;
+  padding: 16px;
+  background-color: var(--sidebar-bg-color, #f8f9fa);
+  
+  h2 {
+    font-size: 18px;
+    margin: 0 0 16px;
+    font-weight: 600;
+    color: var(--heading-color, #333);
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .model-item {
+    padding: 12px;
+    border-radius: 6px;
+    background-color: var(--card-bg-color, #fff);
+    border: 1px solid var(--border-color, #e9ecef);
+    cursor: pointer;
+    transition: all 0.2s;
+    
+    &:hover {
+      border-color: var(--primary-color, #4a6cf7);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    &.active {
+      border-color: var(--primary-color, #4a6cf7);
+      box-shadow: 0 0 0 1px var(--primary-color, #4a6cf7);
+    }
+    
+    &.training {
+      border-left: 3px solid var(--training-color, #ffc107);
+    }
+    
+    &.ready {
+      border-left: 3px solid var(--success-color, #28a745);
+    }
+    
+    &.failed {
+      border-left: 3px solid var(--error-color, #dc3545);
+    }
+    
+    &.draft {
+      border-left: 3px solid var(--draft-color, #6c757d);
+    }
+    
+    .model-name {
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: var(--text-color, #333);
+    }
+    
+    .model-base {
+      font-size: 12px;
+      color: var(--text-muted, #6c757d);
+      margin-bottom: 8px;
+    }
+    
+    .model-status {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+      .status-badge {
+        font-size: 12px;
+        padding: 2px 6px;
+        border-radius: 12px;
+        font-weight: 500;
+        
+        &.draft {
+          background-color: var(--draft-bg-color, #f8f9fa);
+          color: var(--draft-color, #6c757d);
+        }
+        
+        &.training {
+          background-color: var(--training-bg-color, #fff3cd);
+          color: var(--training-color, #856404);
+        }
+        
+        &.ready {
+          background-color: var(--success-bg-color, #d4edda);
+          color: var(--success-color, #155724);
+        }
+        
+        &.failed {
+          background-color: var(--error-bg-color, #f8d7da);
+          color: var(--error-color, #721c24);
+        }
+      }
+      
+      .progress {
+        font-size: 12px;
+        color: var(--training-color, #856404);
+      }
+    }
+    
+    .model-date {
+      font-size: 12px;
+      color: var(--text-muted, #6c757d);
+      margin-top: 4px;
+      text-align: right;
+    }
+  }
+  
+  &.models-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    
+    .loading-spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid var(--spinner-color, #e9ecef);
+      border-top-color: var(--primary-color, #4a6cf7);
+      border-radius: 50%;
+      animation: spinner 0.8s linear infinite;
+    }
+    
+    p {
+      color: var(--text-muted, #6c757d);
+    }
+  }
+  
+  &.models-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 100%;
+    
+    p {
+      color: var(--text-muted, #6c757d);
+      text-align: center;
+      
+      &.hint {
+        font-size: 14px;
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+} 

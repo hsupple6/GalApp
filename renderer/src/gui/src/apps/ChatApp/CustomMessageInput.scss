@@ -1,0 +1,98 @@
+.custom-message-input {
+  width: 100%;
+  padding: 12px 20px 16px;
+  background-color: var(--chat-bg-dark);
+  border-top: 1px solid var(--chat-border);
+
+  .input-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+    background-color: var(--chat-bg-light);
+    border: 1px solid var(--chat-border);
+    transition: border-color 0.2s ease;
+
+    &:focus-within {
+      border-color: var(--chat-primary);
+    }
+
+    .message-textarea {
+      flex: 1;
+      width: 100%;
+      min-height: 44px;
+      max-height: 150px;
+      padding: 12px 50px 12px 16px;
+      background-color: transparent;
+      color: var(--chat-text-primary);
+      font-size: 15px;
+      line-height: 1.4;
+      border: none;
+      border-radius: 12px;
+      resize: none;
+      overflow-y: auto;
+      outline: none;
+      
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: var(--chat-border);
+        border-radius: 3px;
+      }
+
+      &::placeholder {
+        color: var(--chat-text-secondary);
+      }
+    }
+
+    .send-button {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: none;
+      background-color: var(--chat-bg-dark);
+      color: var(--chat-text-secondary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &.active {
+        background-color: var(--chat-primary);
+        color: white;
+        
+        &:hover {
+          background-color: var(--chat-secondary);
+          transform: scale(1.05);
+        }
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .input-footer {
+    margin-top: 8px;
+    text-align: center;
+    
+    .hint {
+      font-size: 12px;
+      color: var(--chat-text-secondary);
+      opacity: 0.7;
+    }
+  }
+} 

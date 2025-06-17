@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entity Table View</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+
+    input, select {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    button {
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #3a7bc8;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      border-radius: 4px;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      background-color: #f5f7fa;
+      font-weight: 500;
+      color: #2c3e50;
+      position: sticky;
+      top: 0;
+    }
+
+    tr:hover {
+      background-color: #f9f9f9;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #e1f5fe;
+      color: #0277bd;
+      padding: 2px 8px;
+      border-radius: 12px;
+      margin-right: 4px;
+      margin-bottom: 4px;
+      font-size: 12px;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .tag-editor {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      width: 400px;
+      max-width: 90%;
+      z-index: 1000;
+    }
+
+    .tag-editor h3 {
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+
+    .current-tags {
+      margin-bottom: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .current-tags .tag {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .current-tags .tag button {
+      background: none;
+      color: #999;
+      padding: 0;
+      margin: 0;
+      font-size: 14px;
+      width: 16px;
+      height: 16px;
+      line-height: 1;
+      border-radius: 50%;
+    }
+
+    .tag-input-container {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .tag-input-container input {
+      flex: 1;
+    }
+
+    .tag-editor-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.3);
+      z-index: 999;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: #666;
+    }
+
+    .entity-type {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      background: #f0f0f0;
+      color: #666;
+    }
+
+    .entity-type.file {
+      background-color: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .entity-type.directory {
+      background-color: #e3f2fd;
+      color: #1565c0;
+    }
+
+    .status-message {
+      padding: 10px 15px;
+      margin-bottom: 15px;
+      border-radius: 4px;
+      display: none;
+    }
+
+    .status-message.info {
+      background-color: #e3f2fd;
+      color: #0c5460;
+    }
+
+    .status-message.success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+
+    .status-message.error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+  </style>
+</head>
+<body>
+  <h1>Entity Table</h1>
+
+  <div id="statusMessage" class="status-message"></div>
+
+  <div class="controls">
+    <input type="text" id="searchInput" placeholder="Search by name...">
+    <select id="typeFilter">
+      <option value="">All Types</option>
+      <option value="File">Files</option>
+      <option value="Group">Folders</option>
+    </select>
+    <button id="refreshBtn">Refresh</button>
+  </div>
+
+  <table id="entityTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Tags</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="entityTableBody">
+      <!-- Entities will be listed here -->
+    </tbody>
+  </table>
+
+  <div id="emptyState" class="empty-state" style="display: none;">
+    <p>No entities found matching your criteria.</p>
+  </div>
+
+  <div id="tagEditorOverlay" class="overlay" style="display: none;"></div>
+  <div id="tagEditor" class="tag-editor" style="display: none;">
+    <h3>Edit Tags</h3>
+    <div id="currentTags" class="current-tags"></div>
+    <div class="tag-input-container">
+      <input type="text" id="newTagInput" placeholder="Add new tag...">
+      <button id="addTagBtn">Add</button>
+    </div>
+    <div class="tag-editor-actions">
+      <button id="cancelTagsBtn">Cancel</button>
+      <button id="saveTagsBtn">Save</button>
+    </div>
+  </div>
+
+  <script>
+    // Communication with parent window
+    function sendMessage(type, payload) {
+      window.parent.postMessage({ type, payload }, '*');
+    }
+
+    // State variables
+    let entities = [];
+    let currentEditEntity = null;
+
+    // Initialize UI
+    function init() {
+      // Set up event handlers
+      document.getElementById('refreshBtn').addEventListener('click', queryEntities);
+      document.getElementById('searchInput').addEventListener('input', debounce(queryEntities, 300));
+      document.getElementById('typeFilter').addEventListener('change', queryEntities);
+
+      document.getElementById('addTagBtn').addEventListener('click', addTag);
+      document.getElementById('saveTagsBtn').addEventListener('click', saveTags);
+      document.getElementById('cancelTagsBtn').addEventListener('click', closeTagEditor);
+
+      document.getElementById('newTagInput').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') addTag();
+      });
+
+      // Only send UI_READY if we haven't already
+      if (!window.sentReadyMessage) {
+        console.log('Sending UI_READY message to parent');
+        sendMessage('UI_READY', {});
+        window.sentReadyMessage = true;
+      }
+    }
+
+    // Listen for messages from parent
+    window.addEventListener('message', (event) => {
+      console.log('Received message from parent:', event.data);
+
+      if (event.data.type === 'ENTITIES_UPDATED') {
+        renderEntities(event.data.payload.entities);
+      }
+
+      if (event.data.type === 'ACTION_RESPONSE') {
+        const response = event.data.payload;
+
+        if (response.action === 'QUERY_ENTITIES' && response.success) {
+          renderEntities(response.result.entities);
+        }
+
+        if (response.action === 'UPDATE_ENTITY') {
+          if (response.success) {
+            showStatus('Entity updated successfully', 'success');
+            queryEntities(); // Refresh the entities
+          } else {
+            showStatus(`Error: ${response.error || 'Failed to update entity'}`, 'error');
+          }
+        }
+      }
+
+      // Don't send another UI_READY in response to INITIALIZE
+      if (event.data.type === 'INITIALIZE') {
+        // Just acknowledge and request entities (only once)
+        setTimeout(queryEntities, 500);
+      }
+    });
+
+    // Initial entities query
+    function queryEntities() {
+      const searchText = document.getElementById('searchInput').value;
+      const entityType = document.getElementById('typeFilter').value;
+
+      const filter = {};
+      if (searchText) filter.name = searchText;
+      if (entityType) filter.entityType = entityType;
+
+      showStatus('Loading entities...', 'info');
+
+      sendMessage('UI_ACTION', {
+        action: 'QUERY_ENTITIES',
+        filter,
+        sort: { field: 'name', direction: 'asc' }
+      });
+    }
+
+    // Render entities to table
+    function renderEntities(data) {
+      entities = data || [];
+      const tableBody = document.getElementById('entityTableBody');
+      const emptyState = document.getElementById('emptyState');
+
+      tableBody.innerHTML = '';
+
+      if (!entities || entities.length === 0) {
+        emptyState.style.display = 'block';
+        hideStatus();
+        return;
+      }
+
+      emptyState.style.display = 'none';
+      hideStatus();
+
+      entities.forEach(entity => {
+        const row = document.createElement('tr');
+
+        // Name column
+        const nameCell = document.createElement('td');
+        nameCell.textContent = entity.name || entity.skeleton?.fileName || 'Unnamed';
+        row.appendChild(nameCell);
+
+        // Type column
+        const typeCell = document.createElement('td');
+        const typeSpan = document.createElement('span');
+        typeSpan.className = `entity-type ${entity.entityType.toLowerCase()}`;
+        typeSpan.textContent = entity.entityType;
+        typeCell.appendChild(typeSpan);
+        row.appendChild(typeCell);
+
+        // Tags column
+        const tagsCell = document.createElement('td');
+        const tagList = document.createElement('div');
+        tagList.className = 'tag-list';
+        const tags = entity.metadata?.tags || [];
+        tags.forEach(tag => {
+          const tagSpan = document.createElement('span');
+          tagSpan.className = 'tag';
+          tagSpan.textContent = tag;
+          tagList.appendChild(tagSpan);
+        });
+        tagsCell.appendChild(tagList);
+        row.appendChild(tagsCell);
+
+        // Actions column
+        const actionsCell = document.createElement('td');
+        const editTagsBtn = document.createElement('button');
+        editTagsBtn.textContent = 'Edit Tags';
+        editTagsBtn.onclick = () => openTagEditor(entity);
+        actionsCell.appendChild(editTagsBtn);
+        row.appendChild(actionsCell);
+
+        tableBody.appendChild(row);
+      });
+    }
+
+    // Open tag editor
+    function openTagEditor(entity) {
+      currentEditEntity = entity;
+
+      const tagEditor = document.getElementById('tagEditor');
+      const tagEditorOverlay = document.getElementById('tagEditorOverlay');
+      const currentTags = document.getElementById('currentTags');
+
+      // Clear existing tags
+      currentTags.innerHTML = '';
+
+      // Display current tags
+      const tags = entity.metadata?.tags || [];
+      tags.forEach(tag => {
+        addTagElement(tag);
+      });
+
+      // Clear input field
+      document.getElementById('newTagInput').value = '';
+
+      // Show the editor and overlay
+      tagEditor.style.display = 'block';
+      tagEditorOverlay.style.display = 'block';
+
+      // Focus the input
+      document.getElementById('newTagInput').focus();
+    }
+
+    // Close tag editor
+    function closeTagEditor() {
+      document.getElementById('tagEditor').style.display = 'none';
+      document.getElementById('tagEditorOverlay').style.display = 'none';
+      currentEditEntity = null;
+    }
+
+    // Add a tag element to the current tags
+    function addTagElement(tagText) {
+      const currentTags = document.getElementById('currentTags');
+
+      const tagSpan = document.createElement('span');
+      tagSpan.className = 'tag';
+
+      const tagContent = document.createTextNode(tagText);
+      tagSpan.appendChild(tagContent);
+
+      const removeBtn = document.createElement('button');
+      removeBtn.textContent = '✕';
+      removeBtn.onclick = () => tagSpan.remove();
+      tagSpan.appendChild(removeBtn);
+
+      currentTags.appendChild(tagSpan);
+    }
+
+    // Add a new tag from the input
+    function addTag() {
+      const newTagInput = document.getElementById('newTagInput');
+      const tag = newTagInput.value.trim();
+
+      if (tag) {
+        // Check if tag already exists
+        const existingTags = Array.from(document.querySelectorAll('#currentTags .tag'))
+          .map(el => el.textContent.replace('✕', '').trim());
+
+        if (!existingTags.includes(tag)) {
+          addTagElement(tag);
+        }
+
+        newTagInput.value = '';
+        newTagInput.focus();
+      }
+    }
+
+    // Save updated tags
+    function saveTags() {
+      if (!currentEditEntity) return;
+
+      // Collect all tags
+      const tagElements = document.querySelectorAll('#currentTags .tag');
+      const tags = Array.from(tagElements).map(el => el.textContent.replace('✕', '').trim());
+
+      // Create updates object with metadata
+      const updates = {
+        metadata: {
+          ...(currentEditEntity.metadata || {}),
+          tags
+        }
+      };
+
+      // Send update to parent
+      sendMessage('UI_ACTION', {
+        action: 'UPDATE_ENTITY',
+        entityId: currentEditEntity._id,
+        updates
+      });
+
+      // Close tag editor
+      closeTagEditor();
+    }
+
+    // Show status message
+    function showStatus(message, type = 'info') {
+      const statusEl = document.getElementById('statusMessage');
+      statusEl.textContent = message;
+      statusEl.style.display = 'block';
+
+      // Reset classes
+      statusEl.className = 'status-message';
+      statusEl.classList.add(type);
+    }
+
+    // Hide status message
+    function hideStatus() {
+      document.getElementById('statusMessage').style.display = 'none';
+    }
+
+    // Helper function for debouncing
+    function debounce(func, wait) {
+      let timeout;
+      return function() {
+        const context = this;
+        const args = arguments;
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          func.apply(context, args);
+        }, wait);
+      };
+    }
+
+    // Initialize on load
+    window.addEventListener('load', () => {
+      // Only initialize once
+      if (!window.initialized) {
+        init();
+        window.initialized = true;
+      }
+    });
+  </script>
+</body>
+</html>

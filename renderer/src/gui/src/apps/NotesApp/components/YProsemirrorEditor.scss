@@ -1,0 +1,142 @@
+// Import common styles
+@import './ProseMirrorCommon.scss';
+
+.notes-app-namespace {
+  .notes-editor-container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      
+      .notes-editor-content {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden; /* Prevent unwanted scrolling */
+      }
+  } 
+
+  .prose-mirror-editor {
+      outline: none;
+      overflow: auto; /* Add scrolling here */
+      display: flex;
+      flex-direction: column;
+      
+      // Apply common text styles to this container
+      @extend %prosemirror-base-text;
+      @extend %prosemirror-cursor;
+      
+      // Using common styles from ProseMirrorCommon.scss
+      .ProseMirror {
+          outline: none;
+          flex: 1;
+          padding: 1rem;
+          overflow-y: visible; /* Allow content to be visible */
+          position: relative; /* Ensure proper positioning */
+          
+          // Apply all common ProseMirror styles
+          @extend %prosemirror-base-text;
+          @extend %prosemirror-headings;
+          @extend %prosemirror-blocks;
+          @extend %prosemirror-blockquote;
+          @extend %prosemirror-code;
+          @extend %prosemirror-tables;
+          @extend %prosemirror-selection;
+          
+          /* Ensure first paragraph is visible */
+          &:first-child {
+              margin-top: 0;
+          }
+          
+          /* Fix for content being scrolled out of view */
+          > * {
+              position: relative;
+          }
+          
+          /* Custom cursor styling when editor is focused */
+          &.ProseMirror-focused {
+              caret-color: transparent; /* Hide the native caret */
+              
+              /* Simulate caret with pseudo element */
+              .editor-custom-caret {
+                  position: absolute;
+                  width: 3px;
+                  background-color: var(--accent-color);
+                  height: 1.2em;
+                  animation: blink 1s steps(2, start) infinite;
+                  z-index: 100;
+                  pointer-events: none;
+              }
+              
+              /* Unique approach - add span markers with pseudo elements */
+              .editor-cursor-marker {
+                  position: relative;
+                  
+                  &::after {
+                      content: '';
+                      position: absolute;
+                      left: 0;
+                      top: 0;
+                      width: 3px;
+                      height: 1.2em;
+                      background-color: var(--accent-color);
+                      animation: blink 1s steps(2, start) infinite;
+                  }
+              }
+          }
+          
+          /* YJS Collaborative Cursor Styling */
+          .ProseMirror-yjs-cursor {
+              position: absolute;
+              margin-left: -1px;
+              margin-right: -1px;
+              border-left: 2px solid;
+              border-right: none;
+              pointer-events: none;
+              z-index: 20;
+              
+              /* Prevent word breaking */
+              width: 0;
+              display: inline;
+              
+              > div {
+                  position: absolute;
+                  top: -1.4em;
+                  left: -2px;
+                  font-size: 13px;
+                  background-color: inherit;
+                  border-color: inherit;
+                  font-family: var(--font-family);
+                  font-style: normal;
+                  font-weight: normal;
+                  line-height: normal;
+                  user-select: none;
+                  color: white;
+                  padding: 0 4px;
+                  white-space: nowrap;
+                  border-radius: 4px;
+                  z-index: 21;
+              }
+          }
+          
+          /* This helps prevent breaking words on webkit browsers */
+          .ProseMirror-widget {
+              display: inline;
+              word-break: keep-all;
+              white-space: nowrap;
+              pointer-events: none;
+          }
+      }
+  }
+
+  /* Override cursor color with !important to ensure it applies */
+  .ProseMirror, 
+  .ProseMirror-focused, 
+  .notes-prosemirror .ProseMirror {
+      caret-color: var(--accent-color) !important;
+  }
+}
+
+/* Animation for blinking cursor */
+@keyframes blink {
+    50% { opacity: 0; }
+}

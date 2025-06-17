@@ -1,0 +1,283 @@
+.create-model-form {
+  height: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px;
+  
+  h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 24px;
+    color: var(--heading-color, #333);
+  }
+  
+  .error-message {
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    background-color: var(--error-bg-color, #f8d7da);
+    color: var(--error-color, #721c24);
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .step-indicator {
+    display: flex;
+    margin-bottom: 32px;
+    
+    .step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      
+      &::before, &::after {
+        content: '';
+        position: absolute;
+        top: 16px;
+        height: 2px;
+        background-color: var(--border-color, #e9ecef);
+        z-index: 1;
+      }
+      
+      &::before {
+        left: 0;
+        right: 50%;
+      }
+      
+      &::after {
+        left: 50%;
+        right: 0;
+      }
+      
+      &:first-child::before {
+        display: none;
+      }
+      
+      &:last-child::after {
+        display: none;
+      }
+      
+      &.active .step-number {
+        background-color: var(--primary-color, #4a6cf7);
+        color: white;
+      }
+      
+      &.completed {
+        .step-number {
+          background-color: var(--success-color, #28a745);
+          color: white;
+        }
+        
+        &::before, &::after {
+          background-color: var(--success-color, #28a745);
+        }
+      }
+      
+      .step-number {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-color: var(--secondary-bg-color, #e9ecef);
+        color: var(--text-color, #333);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        margin-bottom: 8px;
+        position: relative;
+        z-index: 2;
+      }
+      
+      .step-label {
+        font-size: 14px;
+        color: var(--text-muted, #6c757d);
+        font-weight: 500;
+      }
+    }
+  }
+  
+  .form-step {
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0 0 24px;
+      color: var(--heading-color, #333);
+    }
+    
+    .form-group {
+      margin-bottom: 24px;
+      
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--label-color, #495057);
+        
+        &.checkbox-label {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          cursor: pointer;
+          
+          input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+          }
+        }
+      }
+      
+      input[type="text"],
+      input[type="tel"],
+      input[type="number"],
+      select,
+      textarea {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid var(--input-border-color, #ced4da);
+        border-radius: 4px;
+        font-size: 16px;
+        transition: border-color 0.2s;
+        
+        &:focus {
+          outline: none;
+          border-color: var(--primary-color, #4a6cf7);
+          box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.15);
+        }
+        
+        &:disabled {
+          background-color: var(--disabled-bg-color, #e9ecef);
+          cursor: not-allowed;
+        }
+      }
+      
+      .input-hint {
+        margin-top: 6px;
+        font-size: 13px;
+        color: var(--text-muted, #6c757d);
+      }
+      
+      .sample-quality {
+        margin-top: 8px;
+        padding: 6px 10px;
+        border-radius: 4px;
+        font-size: 13px;
+        
+        &.poor {
+          background-color: var(--poor-bg-color, #f8d7da);
+          color: var(--poor-color, #721c24);
+        }
+        
+        &.fair {
+          background-color: var(--fair-bg-color, #fff3cd);
+          color: var(--fair-color, #856404);
+        }
+        
+        &.good {
+          background-color: var(--good-bg-color, #d4edda);
+          color: var(--good-color, #155724);
+        }
+        
+        &.great {
+          background-color: var(--great-bg-color, #d1ecf1);
+          color: var(--great-color, #0c5460);
+        }
+        
+        &.excellent {
+          background-color: var(--excellent-bg-color, #cce5ff);
+          color: var(--excellent-color, #004085);
+        }
+      }
+    }
+    
+    .training-method-group {
+      .training-method-options {
+        display: flex;
+        gap: 16px;
+        
+        .training-option {
+          flex: 1;
+          border: 1px solid var(--border-color, #e9ecef);
+          border-radius: 8px;
+          padding: 16px;
+          cursor: pointer;
+          transition: all 0.2s;
+          
+          &:hover {
+            border-color: var(--primary-color, #4a6cf7);
+          }
+          
+          &.selected {
+            border-color: var(--primary-color, #4a6cf7);
+            box-shadow: 0 0 0 1px var(--primary-color, #4a6cf7);
+            
+            .option-title {
+              color: var(--primary-color, #4a6cf7);
+            }
+          }
+          
+          .option-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            
+            .option-title {
+              font-weight: 600;
+              font-size: 16px;
+            }
+          }
+          
+          .option-description {
+            font-size: 14px;
+            color: var(--text-muted, #6c757d);
+            line-height: 1.5;
+          }
+        }
+      }
+    }
+    
+    .form-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 32px;
+      
+      button {
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+        font-size: 14px;
+        cursor: pointer;
+        border: none;
+        transition: background-color 0.2s, transform 0.1s;
+        
+        &:active {
+          transform: translateY(1px);
+        }
+        
+        &:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+      }
+      
+      .back-button, .cancel-button {
+        background-color: var(--secondary-bg-color, #e9ecef);
+        color: var(--text-color, #333);
+        
+        &:hover:not(:disabled) {
+          background-color: var(--secondary-hover-color, #dee2e6);
+        }
+      }
+      
+      .next-button, .submit-button {
+        background-color: var(--primary-color, #4a6cf7);
+        color: white;
+        
+        &:hover:not(:disabled) {
+          background-color: var(--primary-hover-color, #3a5ce5);
+        }
+      }
+    }
+  }
+} 

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="GalOS Prototype - An experimental operating system"
+    />
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bedrock.computer/" />
+    <meta property="og:title" content="Gal - Your Personal Ai Computer" />
+    <meta property="og:description" content="Meet Gal, your Personal Ai Computer. Own your Ai, own your future. A revolutionary environment where you and your Ai work together with modern tools to navigate the chaos of modernity." />
+    <meta property="og:image" content="%PUBLIC_URL%/thumb.webp" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://bedrock.computer/" />
+    <meta property="twitter:title" content="Gal - Your Personal Ai Computer" />
+    <meta property="twitter:description" content="Meet Gal, your Personal Ai Computer. Own your Ai, own your future. A revolutionary environment where you and your Ai work together with modern tools to navigate the chaos of modernity." />
+    <meta property="twitter:image" content="%PUBLIC_URL%/thumb.webp" />
+
+    <!-- Additional Meta Tags -->
+    <meta name="keywords" content="AI computer, personal AI, artificial intelligence, productivity tools, modern computing" />
+    <meta name="author" content="Bedrock Computer" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="revisit-after" content="7 days" />
+    <meta name="generator" content="React" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <script>
+      // Initialize PDFiumModule asynchronously
+      window.PDFiumModule = null;
+      window.addEventListener('load', function() {
+        const script = document.createElement('script');
+        script.src = '%PUBLIC_URL%/pdfium-wasm/pdfium.js';
+        script.onload = function() {
+          window.PDFiumModule = PDFiumModule;
+        };
+        document.head.appendChild(script);
+      });
+    </script>
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!-- Meta tags for cross-origin isolation (needed for SharedArrayBuffer) -->
+    <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin" />
+    <meta http-equiv="Cross-Origin-Embedder-Policy" content="require-corp" />
+    
+    <title>GalOS Prototype</title>
+  </head>
+  <body style="background: #131313;">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>

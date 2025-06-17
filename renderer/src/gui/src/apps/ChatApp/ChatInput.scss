@@ -1,0 +1,215 @@
+.chat-input {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--chat-border);
+  padding: 12px 20px 16px;
+  background-color: var(--chat-bg-dark);
+  
+  .input-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--chat-bg-light);
+    border: 1px solid var(--chat-border);
+    border-radius: 12px;
+    transition: border-color 0.2s ease;
+    
+    &:focus-within {
+      border-color: var(--chat-primary);
+    }
+    
+    .message-textarea {
+      width: 100%;
+      min-height: 44px;
+      max-height: 200px;
+      padding: 12px 80px 12px 16px; // Additional right padding for the model selector
+      background-color: transparent;
+      color: var(--chat-text-primary);
+      font-size: 15px;
+      line-height: 1.4;
+      border: none;
+      border-radius: 12px;
+      font-family: inherit;
+      resize: none;
+      overflow-y: auto;
+      outline: none;
+      
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: var(--chat-border);
+        border-radius: 3px;
+      }
+
+      &::placeholder {
+        color: var(--chat-text-secondary);
+      }
+      
+      &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+    }
+    
+    .input-actions {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      
+      .send-button {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--chat-bg-dark);
+        color: var(--chat-text-secondary);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        
+        &.active {
+          background-color: var(--chat-primary);
+          color: white;
+          
+          &:hover {
+            background-color: var(--chat-secondary);
+            transform: scale(1.05);
+          }
+        }
+        
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+        
+        .processing-indicator {
+          font-size: 16px;
+          animation: rotate 1.5s linear infinite;
+        }
+      }
+    }
+  }
+  
+  .input-footer {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--chat-text-secondary);
+    opacity: 0.7;
+    text-align: center;
+    
+    .hint {
+      font-style: italic;
+    }
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rag-toggle {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.toggle-label {
+  margin-left: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+  
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    
+    &:checked + .toggle-slider {
+      background-color: var(--primary-color, #4a7bdf);
+    }
+    
+    &:checked + .toggle-slider:before {
+      transform: translateX(16px);
+    }
+    
+    &:disabled + .toggle-slider {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+  
+  .toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .3s;
+    border-radius: 34px;
+    
+    &:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      transition: .3s;
+      border-radius: 50%;
+    }
+  }
+}
+
+.chat-settings {
+  display: flex;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  
+  .setting-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .setting-label {
+    font-weight: 500;
+  }
+  
+  .setting-value {
+    &.enabled {
+      color: var(--success-color, #4caf50);
+    }
+    
+    &.disabled {
+      color: var(--text-tertiary);
+    }
+  }
+} 

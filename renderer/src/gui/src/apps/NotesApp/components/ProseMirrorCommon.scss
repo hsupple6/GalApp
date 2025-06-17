@@ -1,0 +1,106 @@
+// Common ProseMirror styling for NotesApp
+// Shared between Notes.scss and YProsemirrorEditor.scss
+
+// Define a namespace for all NotesApp ProseMirror styles
+.notes-app-namespace {
+  // Basic text styling
+  %prosemirror-base-text {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-normal);
+      background: var(--background-primary);
+  }
+
+  // Common heading styles
+  %prosemirror-headings {
+      h1 { font-size: 2em; font-weight: 600; margin: 0.67em 0; }
+      h2 { font-size: 1.5em; font-weight: 600; margin: 0.75em 0; }
+      h3 { font-size: 1.17em; font-weight: 600; margin: 0.83em 0; }
+      h4 { font-size: 1em; font-weight: 600; margin: 1.12em 0; }
+      h5 { font-size: 0.83em; font-weight: 600; margin: 1.5em 0; }
+      h6 { font-size: 0.67em; font-weight: 600; margin: 1.67em 0; }
+  }
+
+  // Common paragraph and list styles
+  %prosemirror-blocks {
+      p { 
+          margin: 0; 
+          line-height: 1.5;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+      
+      ul, ol {
+          padding-left: 2em;
+          margin: 1em 0;
+      }
+  }
+
+  // Common blockquote styles
+  %prosemirror-blockquote {
+      blockquote {
+          margin: 1em 0;
+          padding-left: 1em;
+          border-left: 3px solid var(--border-color);
+          color: var(--text-muted);
+      }
+  }
+
+  // Common code block styles
+  %prosemirror-code {
+      pre {
+          background: var(--background-secondary);
+          padding: 0.75em 1em;
+          border-radius: 4px;
+          overflow-x: auto;
+          margin-bottom: 1em;
+      }
+
+      code {
+          font-family: monospace;
+          background: var(--background-secondary);
+          padding: 0.2em 0.4em;
+          border-radius: 3px;
+          font-size: 0.9em;
+      }
+  }
+
+  // Common table styles
+  %prosemirror-tables {
+      table {
+          border-collapse: collapse;
+          margin: 1em 0;
+          
+          td, th {
+              border: 1px solid var(--border-color);
+              padding: 0.4em 0.8em;
+          }
+      }
+  }
+
+  // Selection styles
+  %prosemirror-selection {
+      .ProseMirror-selectednode {
+          outline: 2px solid var(--accent-color);
+      }
+
+      p.ProseMirror-selectednode {
+          background: transparent;
+      }
+      
+      p::selection,
+      p *::selection {
+          background: var(--accent-color-transparent, rgba(74, 144, 226, 0.3));
+      }
+  } 
+
+  // Cursor styling
+  %prosemirror-cursor {
+      // Default cursor color
+      caret-color: var(--accent-color);
+      
+      // Firefox specific selector for the cursor
+      &::-moz-selection {
+          caret-color: var(--accent-color);
+      }
+  } 
+} 

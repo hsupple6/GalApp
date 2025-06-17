@@ -1,0 +1,181 @@
+.menu-button-container {
+  position: relative;
+  display: inline-block;
+}
+
+.menu-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  margin-right: 8px;
+  cursor: default;
+  border: none;
+  font-size: 10px;
+  backdrop-filter: blur(5px);
+  transition: background 0.1s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  &:active, &.active {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.menu-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: -4px;
+  background-color: rgba(0, 0, 0, 0.9);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-radius: 20px;
+  padding: 8px;
+  min-width: 240px;
+  box-shadow: 0px 28px 58px 4px rgba(0, 0, 0, 0.55);
+  z-index: 1000;
+  animation: menuFadeIn 0.1s ease;
+  isolation: isolate;
+  
+  @supports not (backdrop-filter: blur(14px)) {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  
+  .user-profile-section {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    gap: 12px;
+    
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .user-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      
+      .user-name {
+        color: #fff;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 1.2;
+      }
+      
+      .user-email {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 11px;
+        line-height: 1.2;
+        opacity: 0.8;
+      }
+    }
+  }
+  
+  .menu-item {
+    padding: 8px 12px;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 8xp;
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    &:last-child {
+      border-radius: 8px 8px 12px 12px;
+    }
+    &.current-location {
+      border-radius: 8px;
+    }
+  }
+}
+
+.menu-item {
+  padding: 4px 8px;
+  color: #fff;
+  font-size: 13px;
+  cursor: default;
+  white-space: nowrap;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+
+  &.disabled {
+    color: rgba(255, 255, 255, 0.4);
+    pointer-events: none;
+  }
+}
+
+.menu-separator {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 4px 0;
+}
+
+.menu-section-header {
+  padding: 4px 8px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: default;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.space-item {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 12px;
+  padding-left: 16px;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+  }
+  
+  &.active {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-weight: 500;
+    
+    &::before {
+      content: '●';
+      margin-right: 8px;
+      color: #00ff88;
+      font-size: 8px;
+    }
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  }
+}
+
+@keyframes menuFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} 

@@ -1,0 +1,26 @@
+.pdf-thumbnails {
+  width: 200px;
+  background: var(--pdf-thumbnails-bg, #1a1a1a);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  overflow-y: auto;
+
+  .thumbnails-content {
+    padding: 1rem;
+  }
+
+  .thumbnail {
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    border-radius: 4px;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    &.active {
+      background: rgba(255, 255, 255, 0.15);
+    }
+  }
+} 

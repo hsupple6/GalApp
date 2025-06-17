@@ -1,0 +1,289 @@
+.source-panel {
+  width: 300px;
+  background-color: #c0c0c0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  border-right: 1px solid #a0a0a0;
+  
+  .source-header {
+    background-color: #808080;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .file-explorer {
+    padding: 0;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    
+    .file-explorer-header {
+      font-weight: bold;
+      padding: 8px 10px;
+      background-color: #e0e0e0;
+      border-bottom: 1px solid #a0a0a0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+      .connect-button {
+        font-size: 12px;
+        padding: 2px 8px;
+        background-color: #4a6da7;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        
+        &:hover {
+          background-color: #3c5c8c;
+        }
+      }
+    }
+    
+    .directory-tree {
+      padding: 10px;
+      overflow-y: auto;
+      max-height: 300px;
+      
+      .directory-item {
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+        
+        &.directory {
+          font-weight: bold;
+        }
+        
+        &.file {
+          color: #333;
+        }
+        
+        .expand-icon {
+          cursor: pointer;
+          margin-right: 5px;
+          font-size: 12px;
+          width: 12px;
+          display: inline-block;
+        }
+        
+        .item-label {
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          
+          &:hover {
+            text-decoration: underline;
+          }
+          
+          &.directory-label {
+            font-weight: bold;
+          }
+          
+          .file-badge {
+            margin-left: 5px;
+            font-size: 10px;
+            background-color: #3c78d8;
+            color: white;
+            padding: 1px 4px;
+            border-radius: 3px;
+            font-weight: bold;
+          }
+        }
+      }
+      
+      .no-directory-selected {
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        p {
+          margin-bottom: 10px;
+          font-size: 14px;
+          text-align: center;
+        }
+        
+        .select-directory-button {
+          padding: 8px 16px;
+          background-color: #4a6da7;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 14px;
+          
+          &:hover {
+            background-color: #3c5c8c;
+          }
+        }
+      }
+      
+      .api-not-supported {
+        padding: 10px;
+        font-size: 13px;
+        font-style: italic;
+        color: #d32f2f;
+      }
+      
+      .loading {
+        padding: 10px;
+        font-style: italic;
+        text-align: center;
+      }
+      
+      .error {
+        padding: 10px;
+        color: #d32f2f;
+        font-size: 13px;
+      }
+    }
+  }
+  
+  .checks-section {
+    padding: 0;
+    margin-bottom: 10px;
+    
+    .checks-header {
+      font-weight: bold;
+      padding: 8px 10px;
+      background-color: #e0e0e0;
+      border-bottom: 1px solid #a0a0a0;
+    }
+    
+    .check-item {
+      padding: 10px;
+      
+      .check-button {
+        width: 100%;
+        padding: 8px;
+        background-color: #98FB98;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: left;
+        font-size: 14px;
+        transition: background-color 0.2s;
+        
+        &:hover:not(:disabled) {
+          background-color: #90EE90;
+        }
+        
+        &:disabled {
+          background-color: #e0e0e0;
+          color: #999;
+          cursor: not-allowed;
+        }
+        
+        &.folder-mapping-button {
+          background-color: #ADD8E6;
+          font-weight: 500;
+          
+          &:hover:not(:disabled) {
+            background-color: #87CEEB;
+          }
+        }
+      }
+    }
+    
+    .processing-status {
+      padding: 8px 10px;
+      background-color: #f0f8ff;
+      margin: 0 10px 10px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #1565c0;
+      border-left: 3px solid #1565c0;
+    }
+  }
+  
+  .results-section {
+    padding: 0;
+    margin-bottom: 10px;
+    
+    .results-header {
+      font-weight: bold;
+      padding: 8px 10px;
+      background-color: #e0e0e0;
+      border-bottom: 1px solid #a0a0a0;
+    }
+    
+    .results-summary {
+      padding: 10px;
+      
+      .result-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        
+        .result-label {
+          font-weight: bold;
+          color: #444;
+        }
+        
+        .result-value {
+          color: #1565c0;
+        }
+
+        .pipeline-badges {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 4px;
+          
+          .pipeline-badge {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            
+            &.freesurfer {
+              background-color: #e8f5e9;
+              color: #43a047;
+            }
+            
+            &.fsl {
+              background-color: #e3f2fd;
+              color: #1e88e5;
+            }
+            
+            &.spm {
+              background-color: #fff3e0;
+              color: #f57c00;
+            }
+            
+            &.ants {
+              background-color: #f3e5f5;
+              color: #8e24aa;
+            }
+            
+            &.conn {
+              background-color: #e0f7fa;
+              color: #00acc1;
+            }
+          }
+        }
+      }
+    }
+    
+    .result-actions {
+      padding: 0 10px 10px;
+      
+      .result-button {
+        width: 100%;
+        padding: 6px;
+        background-color: #3c78d8;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        
+        &:hover {
+          background-color: #1565c0;
+        }
+      }
+    }
+  }
+} 

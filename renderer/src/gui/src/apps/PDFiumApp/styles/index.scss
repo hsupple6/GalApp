@@ -1,0 +1,178 @@
+// Variables
+$toolbar-height: 48px;
+$toolbar-background: #f5f5f5;
+$highlight-color: rgba(255, 255, 0, 0.3);
+$toolbar-border: #ddd;
+$button-hover: #e0e0e0;
+$spacing: 8px;
+
+// Main container
+.pdf-app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #525659;
+  color: #333;
+  
+  // Toolbar
+  .pdf-toolbar {
+    height: $toolbar-height;
+    background: $toolbar-background;
+    border-bottom: 1px solid $toolbar-border;
+    display: flex;
+    align-items: center;
+    padding: 0 $spacing;
+    gap: $spacing * 2;
+    user-select: none;
+
+    .tool-group {
+      display: flex;
+      gap: $spacing;
+      
+      .tool-button {
+        padding: 6px 12px;
+        border-radius: 4px;
+        border: 1px solid transparent;
+        background: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        
+        &:hover {
+          background: $button-hover;
+        }
+        
+        &.active {
+          background: white;
+          border-color: $toolbar-border;
+        }
+        
+        i {
+          font-size: 16px;
+        }
+      }
+    }
+
+    .zoom-group {
+      display: flex;
+      align-items: center;
+      gap: $spacing;
+      
+      select {
+        padding: 4px 8px;
+        border-radius: 4px;
+        border: 1px solid $toolbar-border;
+      }
+    }
+  }
+
+  // PDF Viewer
+  .pdf-viewer {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    
+    .pdf-pages {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: auto;
+
+      .pdf-page {
+        position: relative;
+        background: white;
+        margin: 20px auto;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.1s ease;
+
+        &:hover {
+          transform: scale(1.005);
+        }
+      }
+    }
+
+    // Highlight interactions
+    .highlight-interactions {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      
+      .highlight-overlay {
+        pointer-events: auto;
+        
+        &:hover {
+          .highlight-toolbar {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .highlight-toolbar {
+          position: absolute;
+          top: -40px;
+          right: 0;
+          background: white;
+          border-radius: 4px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+          padding: 4px;
+          display: flex;
+          gap: 4px;
+          opacity: 0;
+          transform: translateY(10px);
+          transition: all 0.2s ease;
+          
+          button {
+            padding: 4px 8px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-radius: 3px;
+            
+            &:hover {
+              background: $button-hover;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Loading states
+  .loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.8);
+    
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #3498db;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+  }
+}
+
+// Animations
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Utility classes
+.hidden {
+  display: none !important;
+} 

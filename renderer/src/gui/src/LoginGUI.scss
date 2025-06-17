@@ -1,0 +1,271 @@
+.bootScreen {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  
+  .heroPicture {
+      width: 50vw;
+      height: 100vh;
+      background: radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.12) 21.5%, rgba(0, 0, 0, 0.60) 100%), url('assets/bootUp-Person1.png') center center / cover no-repeat;
+      background-color: 151516;
+      position: relative;
+      .bio {
+          position: absolute;
+          bottom: 20px;
+          right: 10px;
+          display: flex;
+          width: 250px;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0px;
+          color: #BBB;
+          font-feature-settings: 'liga' off, 'clig' off;
+          font-family: "SF Mono";
+          font-size: 13px;
+          font-style: italic;
+          font-weight: 500;
+          line-height: 110%;
+          .nameBirth {
+              display: flex;
+              align-items: flex-end;
+              gap: 18px;
+              .name {
+                  font-size: 13px;
+                  font-weight: bold;
+                  color: #BBB;
+              }
+              .birth {
+                  font-size: 10px;
+                  color: #BBB;
+              }
+          }
+
+      }
+  }
+  .bootArea {
+      width: 50vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: radial-gradient(83% 83% at 50% 16.09%, #494B50 0%, #000 100%);
+      font-family: 'Roboto Mono', monospace;
+      .bootProgress {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+      }
+  }
+  .authentication {
+      opacity: 1;
+      transition: opacity 1s ease-out;
+      margin-top: 30px;
+      form{
+
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+      }
+      input {
+          display: flex;
+          align-items: center;
+          padding-left: 14px;
+          border-radius: 8px;
+          min-height: 32px;
+          min-width: 300px;
+          background: rgba(255, 255, 255, 0.20);
+          color: #fff;
+          font-feature-settings: 'liga' off, 'clig' off;
+          font-family: Inter;
+          font-size: 15px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 110%; /* 17.6px */
+          transition: background-color 0.3s ease, border-color 0.3s ease;
+
+          /* Placeholder styles */
+          &::placeholder {
+            color: rgba(255, 255, 255, 0.60); /* Transparent white for placeholder */
+            font-weight: 100;
+          }
+        
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.30); /* Lighten background on hover */
+          }
+        
+          &:focus {
+            outline: none; /* Remove default outline */
+            background-color: rgba(255, 255, 255, 0.40); /* Slightly darker on focus */
+            border: 1px solid rgba(255, 255, 255, 0.60); /* Optional: Add a border on focus */
+          }
+      }
+      button {
+          min-height: 32px;
+          border-radius: 8px;
+          border: 0.5px solid rgba(255, 255, 255, 0.30);
+          background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.40) 100%), rgba(121, 121, 121, 0.20);
+          color: #ffffffda;
+          font-feature-settings: 'liga' off, 'clig' off;
+          font-family: Inter;
+          font-size: 15px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 110%; /* 17.6px */
+          transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s;
+
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.1); /* Slightly lighter on hover */
+            border-color: rgba(255, 255, 255, 0.5); /* Lighten border on hover */
+          }
+        
+          &:active {
+            transform: scale(0.98); /* Slight scale on active state */
+            background-color: rgba(255, 255, 255, 0.2); /* Darker background on click */
+          }
+        
+          &:focus {
+            outline: 2px solid rgba(255, 255, 255, 0.5); /* Custom focus outline */
+            outline-offset: 2px;
+          }
+        
+          &:disabled {
+            background-color: rgba(121, 121, 121, 0.5); /* Grayed-out background for disabled */
+            border-color: rgba(255, 255, 255, 0.15); /* Lighter border for disabled */
+            cursor: not-allowed;
+            opacity: 0.7;
+          }
+      }
+  } 
+  .authentication.fadeOut {
+  opacity: 0;
+  }
+  @media screen and (max-width: 768px) {
+    flex-direction: column;  /* Stack the panels vertically on mobile */
+    height: auto;
+    
+    .heroPicture, .bootArea {
+        width: 100vw;
+        height: 100vh;
+    }
+  
+    .bootArea {
+      order: 1;  
+      // justify-content: flex-start;
+      height: 100vh;
+    }
+    .heroPicture {
+      order: 2;
+    }
+    .bio {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      // text-align: center;
+    }
+  }
+}
+
+//   .bootLogo {
+//     font-size: 3rem;
+//     margin-bottom: 20px;
+//     color: #00ffcc;
+//     animation: glow 1s ease-in-out infinite alternate;
+//   }
+// @keyframes glow {
+//     from {
+//       text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffcc;
+//     }
+//     to {
+//       text-shadow: 0 0 20px #00ffcc, 0 0 30px #00ffcc, 0 0 40px #00ffcc;
+//     }
+//   }
+.bootLogo{
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  .symbol {
+      // box-shadow: 0px -28.856px 23.085px 0px rgba(0, 0, 0, 0.26) inset;
+      // filter: drop-shadow(0px 5.771px 51.94px rgba(255, 255, 255, 0.20));
+  }
+  .wordmark {
+      margin: 0;
+      color: #FFF;
+      text-align: center;
+      font-feature-settings: 'liga' off, 'clig' off;
+      text-shadow: 0px 5.771px 51.94px rgba(255, 255, 255, 0.20);
+      font-family: "SF Pro";
+      font-size: 80px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 110%; /* 88px */
+  }
+}
+
+.bootLoader {
+margin-top: 40px;
+width: 80%;
+height: 10px;
+background-color: rgba(255, 255, 255, 0.1);
+border-radius: 5px;
+//   overflow: hidden;
+
+.progressBar {
+  height: 100%;
+  border-radius: 5px;
+  background-color: #00FFEA;
+  animation: glow 1s ease-in-out infinite alternate;
+  transition: width 1.5s ease;
+}
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffcc;
+  }
+  to {
+    box-shadow: 0 0 20px #00ffcc, 0 0 30px #00ffcc, 0 0 40px #00ffcc;
+  }
+}
+
+
+.bootMessages {
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 20px;
+  color: #e0e0e0;
+  font-family: monospace, monospace;
+  font-weight: medium;
+}
+
+.bootMessages p {
+  margin-top: 10px;
+  margin-bottom: 0;
+  opacity: 0;
+  transform: translateY(50px) scale(0.7);
+  animation: flyIn 0.8s forwards, fadeIn 0.8s forwards;
+  animation-delay: calc(var(--message-index) * 0.5s); /* Each message comes in 0.5s after the previous one */
+}
+
+/* Animation keyframes */
+@keyframes flyIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) scale(0.7); /* Start from the bottom and small */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1); /* Fly up to normal position and size */
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

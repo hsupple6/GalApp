@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Build output
+build/
+dist/
+
+# Version control
+.git/
+.gitignore
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment - exclude development env files but allow production ones
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+# Allow production env files
+!.env.production
+!.env.production.local
+
+# Python
+*.pyc
+__pycache__/
+venv/
+data/
+uploads/
+.dockerignore
+
+*.log

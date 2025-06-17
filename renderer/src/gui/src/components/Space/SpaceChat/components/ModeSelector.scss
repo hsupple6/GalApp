@@ -1,0 +1,82 @@
+.mode-selector {
+  border-bottom: none;
+  margin-bottom: 8px;
+  
+  .mode-tabs {
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    // background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    
+    .mode-button {
+      font-size: 14px;
+      line-height: 1;
+      padding: 4px 6px;
+      border: none;
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      position: relative;
+      border-radius: 20px;
+      
+      &:hover {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+      }
+      
+      &.active {
+        background: rgba(255, 255, 255, 0.25);
+        color: white;
+      }
+      
+      // Thread count styling
+      .thread-count {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        font-size: 10px;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 2px 4px;
+        border-radius: 8px;
+        min-width: 16px;
+        text-align: center;
+      }
+    }
+  }
+  
+  // Dropdown for narrow widths
+  select {
+    display: none;
+    width: 100%;
+    padding: 8px;
+    background: var(--surface-2);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-size: 13px;
+    cursor: pointer;
+    
+    &:hover {
+      background: var(--surface-3);
+    }
+    
+    option {
+      background: var(--surface-1);
+      color: var(--text-primary);
+      padding: 8px;
+    }
+  }
+  
+  &.narrow {
+    .mode-tabs {
+      display: none;
+    }
+    
+    select {
+      display: block;
+    }
+  }
+} 

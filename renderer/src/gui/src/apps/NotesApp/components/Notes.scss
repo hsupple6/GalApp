@@ -1,0 +1,245 @@
+// Common variables - scoped to NotesApp only
+.notes-app-namespace {
+    height: 100%;
+    background-color: var(--background-primary);
+    display: flex;
+    flex-direction: column;
+
+    // NotesApp specific variables
+    --border-color: #e0e0e0;
+    --text-muted: #666;
+    --background-hover: rgba(0, 0, 0, 0.03);
+    --container-padding: 20px;
+    --background-primary: #fff;
+    --text-normal: #333;
+    --background-secondary: #f5f5f5;
+    --accent-color: #007aff;
+    --accent-color-transparent: rgba(0, 122, 255, 0.3);
+
+    // Add dark mode variables
+    @media (prefers-color-scheme: dark) {
+        --border-color: #3d3d3f;
+        --text-muted: #8e8e93;
+        --background-hover: rgba(255, 255, 255, 0.05);
+        --background-primary: #1c1c1e;
+        --text-normal: #e0e0e0;
+        --background-secondary: #2c2c2e;
+        --accent-color: #0a84ff;
+        --accent-color-transparent: rgba(10, 132, 255, 0.3);
+    }
+
+    // Common button styles
+    %button-base {
+        padding: 4px 8px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        color: var(--text-muted);
+        
+        &:hover {
+            color: var(--text-normal);
+        }
+    }
+
+    // Common header styles
+    %header-base {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 16px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    // Notes Overview Styles
+    .notesOverview {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: var(--background-primary);
+        
+        .notesOverviewHeader {
+            @extend %header-base;
+            margin-bottom: 10px;
+            padding: 16px;
+            
+            .createNoteButton {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 32px;
+                height: 32px;
+                background: var(--accent-color);
+                color: white;
+                border: none;
+                border-radius: 50%;
+                cursor: pointer;
+                font-size: 22px;
+                line-height: 1;
+                padding: 0;
+                
+                &:hover {
+                    background: darken(#007aff, 5%);
+                }
+                
+                @media (prefers-color-scheme: dark) {
+                    &:hover {
+                        background: darken(#0a84ff, 5%);
+                    }
+                }
+                
+                .buttonIcon {
+                    display: block;
+                    margin-top: -2px;
+                }
+            }
+
+            .appTitle {
+                color: var(--text-normal);
+                font-size: 18px;
+                font-weight: 500;
+            }
+        }
+        
+        .recentNotesList {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0 16px;
+            
+            .noteItem {
+                padding: 16px;
+                border-bottom: 1px solid var(--border-color);
+                cursor: pointer;
+                
+                &:hover {
+                    background: var(--background-hover);
+                    border-radius: 10px;
+                }
+                
+                .notePreview {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
+
+                    .noteTitle {
+                        font-size: 14px;
+                        font-weight: 400;
+                        color: var(--text-normal);
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        max-width: 100%;
+                    }
+                    
+                    .noteTimestamp {
+                        font-size: 12px;
+                        color: var(--text-muted);
+                    }
+                }
+            }
+            
+            .emptyState {
+                text-align: center;
+                color: var(--text-muted);
+                margin-top: 40px;
+                padding: 20px;
+                font-size: 14px;
+            }
+        }
+    }
+
+    // Notes Container Styles
+    .notes-container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        background: var(--background-primary);
+        color: var(--text-normal);
+        overflow: hidden;
+        
+        .notes-header {
+            @extend %header-base;
+
+            .notes-header-left {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+
+                button {
+                    @extend %button-base;
+                }
+
+                h3 {
+                    margin: 0;
+                }
+            }
+
+            button {
+                @extend %button-base;
+            }
+
+            .notes-header-right {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+        }
+
+        // Editor specific styles
+        .notes-editor-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0 1rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            
+            .notes-editor-content {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                min-height: 0;
+                height: 100%;
+
+                > div {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    min-height: 0;
+                }
+            }
+
+            .notes-content {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                min-height: 0;
+                height: 100%;
+
+                .ProseMirror {
+                    flex: 1;
+                    min-height: 100%;
+                    outline: none;
+                    padding: 1rem 0;
+                    
+                    // Apply all the common ProseMirror styles
+                    @extend %prosemirror-base-text;
+                    @extend %prosemirror-headings;
+                    @extend %prosemirror-blocks;
+                    @extend %prosemirror-blockquote;
+                    @extend %prosemirror-code;
+                    @extend %prosemirror-tables;
+                    @extend %prosemirror-selection;
+                }
+            }
+        }
+    }
+    
+    .savingIndicator {
+        font-size: 0.8em;
+        color: var(--text-muted);
+        margin-left: 10px;
+    }
+}
+
+// Import common ProseMirror styles
+@import './ProseMirrorCommon.scss';

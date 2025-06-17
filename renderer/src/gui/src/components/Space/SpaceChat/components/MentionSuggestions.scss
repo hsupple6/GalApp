@@ -1,0 +1,43 @@
+.mention-suggestions {
+  position: absolute;
+  bottom: calc(100% + 5px); // Add some space between input and suggestions
+  left: 0;
+  background: var(--background-color, rgba(0, 0, 0, 0.8));
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.2));
+  border-radius: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.mention-suggestion-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.mention-entity-name {
+  font-weight: 500;
+}
+
+.mention-entity-type {
+  font-size: 0.8em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.mention {
+  color: var(--primary-color);
+  background: var(--primary-color-10);
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-weight: 500;
+} 

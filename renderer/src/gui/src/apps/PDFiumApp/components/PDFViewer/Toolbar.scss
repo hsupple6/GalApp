@@ -1,0 +1,35 @@
+.pdf-toolbar {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: var(--pdf-toolbar-bg, #1a1a1a);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  .toolbar-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-right: 1rem;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  button {
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  span {
+    color: rgba(255, 255, 255, 0.8);
+  }
+} 

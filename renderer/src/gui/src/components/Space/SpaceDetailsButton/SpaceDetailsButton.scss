@@ -1,0 +1,101 @@
+.space-details-button {
+  background: none;
+  border: none;
+  color: #b3b3b3;
+  font: inherit;
+  cursor: default;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: background 0.1s ease;
+
+  &:hover, &.active {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  &:active {
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.space-details-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: -4px;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 8px;
+  min-width: 240px;
+  box-shadow: 0px 28px 58px 4px rgba(0, 0, 0, 0.55);
+  z-index: 1000;
+  animation: menuFadeIn 0.1s ease;
+
+  .menu-item {
+    padding: 4px 8px;
+    color: #fff;
+    font-size: 13px;
+    cursor: default;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 28px;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    &.full-width {
+      flex-direction: column;
+      align-items: flex-start;
+      height: auto;
+      gap: 4px;
+
+      label {
+        font-size: 11px;
+      }
+
+      input {
+        width: 100%;
+      }
+    }
+
+    label {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 13px;
+    }
+
+    input, select {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: white;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-size: 13px;
+      backdrop-filter: blur(5px);
+      width: 120px;
+
+      &:focus {
+        outline: none;
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+    }
+  }
+
+  .menu-separator {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 4px 0;
+  }
+}
+
+@keyframes menuFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} 

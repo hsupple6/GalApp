@@ -1,0 +1,23 @@
+.pdf-viewer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--pdf-viewer-bg, #2c2c2c);
+  color: var(--pdf-viewer-text, #fff);
+
+  .pdf-viewer-container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .pdf-viewer-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+} 

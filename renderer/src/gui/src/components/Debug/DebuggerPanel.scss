@@ -1,0 +1,109 @@
+.yjs-debugger {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 0.5);
+  padding: 10px;
+  font-family: monospace;
+  font-size: 12px;
+  max-height: 80vh;
+  max-width: 500px;
+  overflow-y: auto;
+  overflow-x: auto;
+  transition: color 0.2s ease, background 0.2s ease;
+  border: 1px solid transparent;
+  white-space: pre;
+  z-index: 1000;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(0, 0, 0, 0.83);
+  }
+
+  .debug-header {
+    font-size: 12px;
+    font-weight: bold;
+    
+    // Add deployment type color indicators
+    &.local {
+      color: #3b82f6; // Blue for local
+    }
+    
+    &.production {
+      color: #dc2626; // Red for production
+    }
+    
+    &.development {
+      color: #10b981; // Green for development
+    }
+    
+    &.staging {
+      color: #f59e0b; // Orange for staging
+    }
+  }
+
+  .debug-section {
+    margin-top: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .debug-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 4px;
+    font-size: 11px;
+
+    th, td {
+      padding: 2px 4px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    th {
+      border-bottom-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .right { text-align: right; }
+    .center { text-align: center; }
+    .muted { color: rgba(255, 255, 255, 0.5); }
+    .active { color: rgba(255, 255, 255, 0.95); }
+
+    .flag {
+      color: rgba(255, 255, 255, 0.3);
+      &.active {
+        &:first-child { color: #ffb74d; } // props
+        &:last-child { color: #81c784; }  // entity
+      }
+    }
+
+    .active-peers {
+      color: #81c784;
+    }
+  }
+
+  .space-data {
+    font-size: 10px;
+    margin-top: 4px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  // Add deployment color to relevant elements
+  .deployment-indicator {
+    &.local {
+      color: #3b82f6; // Blue for local
+    }
+    
+    &.production {
+      color: #dc2626; // Red for production
+    }
+    
+    &.development {
+      color: #10b981; // Green for development
+    }
+    
+    &.staging {
+      color: #f59e0b; // Orange for staging
+    }
+  }
+} 

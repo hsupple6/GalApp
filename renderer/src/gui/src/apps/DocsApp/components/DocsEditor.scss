@@ -1,0 +1,286 @@
+.docs-editor {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.docs-editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid var(--border-color, #eee);
+}
+
+.docs-editor-content {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* Global override to ensure containers can expand */
+.docs-editor-page,
+.prose-mirror-editor,
+.ProseMirror {
+  height: unset !important;
+  min-height: unset !important;
+  max-height: unset !important;
+  flex: 1 0 auto !important;
+  overflow: visible !important;
+  transition: font-size 0.2s ease; /* Smooth transition for zoom */
+}
+
+/* Override the YProsemirrorEditor styles to work with our document styling */
+// .prose-mirror-editor {
+//   display: flex;
+//   flex-direction: column;
+//   height: 100%;
+//   width: 100%;
+//   background-color: white;
+// }
+
+.docs-editor-page {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  height: fit-content !important;
+  min-height: 100%;
+  width: 100%;
+  overflow: visible !important;
+}
+
+/* Make sure ProseMirror content can expand */
+.ProseMirror {
+  // min-height: 1100px;
+  height: fit-content !important;
+  overflow: visible !important;
+}
+
+/* Header toolbar styles for text overflow handling */
+.header-toolbar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  overflow: visible;
+  position: relative;
+}
+
+.docs-header-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  
+  h3 {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin: 0;
+    padding: 4px 8px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    max-width: 100%;
+    overflow: hidden;
+    flex: 1;
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+    
+    i.ms-logo {
+      margin-right: 8px;
+      flex-shrink: 0;
+    }
+    
+    .document-title-text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+      display: inline-block;
+      flex: 1;
+    }
+  }
+  
+  .title-input-container {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 4px 8px;
+    border-radius: 4px;
+    max-width: 100%;
+    overflow: hidden;
+    flex: 1;
+    
+    i.ms-logo {
+      margin-right: 8px;
+      color: var(--ms-white, #fff);
+      flex-shrink: 0;
+    }
+  }
+}
+
+/* Document title input styling */
+.document-title-input {
+  font-size: 14px;
+  font-weight: normal;
+  color: var(--ms-white, #fff);
+  padding: 4px;
+  margin: 0;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  width: 100%;
+  flex: 1;
+  outline: none;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+  
+  &:focus {
+    border-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Status bar styling */
+.document-status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 12px;
+  background-color: var(--background-secondary, #f5f5f5);
+  border-top: 1px solid var(--border-color, #eee);
+  font-size: 12px;
+  color: var(--text-muted, #666);
+  z-index: 10; /* Ensure status bar stays above editor content */
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+}
+
+/* Zoom control styles */
+.zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.zoom-button {
+  background: none;
+  border: none;
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--text-muted, #666);
+  padding: 2px 4px;
+  border-radius: 4px;
+  
+  &:hover {
+    color: var(--text-normal, #333);
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
+
+.zoom-level {
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--text-muted, #666);
+  
+  &:hover {
+    color: var(--text-normal, #333);
+    text-decoration: underline;
+  }
+}
+
+/* Docs menu styles */
+.docs-menu-container {
+  position: relative;
+  display: inline-block;
+}
+
+.docs-menu-button {
+  background: none;
+  border: none;
+  color: var(--ms-white, #fff);
+  cursor: pointer;
+  padding: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  font-size: 14px;
+  
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+  
+  &:active {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.docs-menu-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 8px;
+  min-width: 200px;
+  box-shadow: 0px 28px 58px 4px rgba(0, 0, 0, 0.55);
+  z-index: 9999; /* Increased z-index to ensure it appears above everything */
+  overflow: hidden;
+  animation: menuFadeIn 0.1s ease;
+}
+
+.docs-menu-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 8px;
+  white-space: nowrap;
+  height: 40px;
+  transition: background-color 0.1s ease;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+  
+  &:active {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  
+  i {
+    margin-right: 12px;
+    width: 16px;
+    text-align: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+}
+
+@keyframes menuFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

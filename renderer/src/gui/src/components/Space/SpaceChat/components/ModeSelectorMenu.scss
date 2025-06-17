@@ -1,0 +1,89 @@
+.mode-selector-menu {
+  position: relative;
+  display: inline-block;
+  margin-right: 8px;
+  z-index: 1100;
+
+  .mode-button {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 15px;
+    color: rgba(255, 255, 255, 0.87);
+    cursor: pointer;
+    font-size: 12px;
+    padding: 4px 8px;
+    transition: background-color 0.2s;
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+    
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .mode-dropdown {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    margin-bottom: 4px;
+    width: 200px;
+    max-height: 350px;
+    overflow-y: auto;
+    background-color: #1e1e1e;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1100;
+    
+    .mode-section-header {
+      padding: 8px 12px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.45);
+      background-color: #252525;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    
+    .mode-option {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 8px 12px;
+      text-align: left;
+      background: none;
+      border: none;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.87);
+      cursor: pointer;
+      transition: background-color 0.2s;
+      
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.08);
+      }
+      
+      &.active {
+        background-color: rgba(66, 133, 244, 0.12);
+        
+        &:hover {
+          background-color: rgba(66, 133, 244, 0.18);
+        }
+      }
+      
+      .thread-count {
+        margin-left: 8px;
+        font-size: 11px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 1px 6px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      
+      .check {
+        margin-left: auto;
+        color: #4285f4;
+      }
+    }
+  }
+} 

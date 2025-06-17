@@ -1,0 +1,221 @@
+.context-section {
+  padding: 10px 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  
+  // Additional styles for focused mode
+  .chat-panel-focused & {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  
+  .context-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    
+    .context-header-title {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+    
+    .context-add {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      padding: 0;
+      line-height: 1;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+    }
+  }
+
+  .pasted-context {
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+
+    .pasted-context-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+      width: 100%;
+    }
+
+    .pasted-context-title {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.6);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      .pasted-context-range {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.6);
+      }
+    }
+
+    .clear-context-button {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.6);
+      cursor: pointer;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      &:hover {
+        color: rgba(255, 255, 255, 0.8);
+      }
+    }
+
+    .pasted-context-content {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.6);
+      width: 100%;
+    }
+  }
+  
+  .context-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    
+    .context-item {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid transparent;
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-size: 12px;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+      max-width: 100%;
+      width: 100%;
+      box-sizing: border-box;
+      
+      &:hover {
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+      
+      .context-item-content {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-width: 0;
+        max-width: calc(100% - 24px); // Account for the remove button width
+      }
+      
+      .context-item-title {
+        opacity: 0.8;
+        max-width: 100%;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.2;
+        
+        span {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          line-height: 1.2;
+        }
+        
+        .line-range {
+          font-size: 0.8em;
+          color: var(--accent, #4291ff);
+          margin-top: 2px;
+          background-color: rgba(66, 145, 255, 0.1);
+          padding: 1px 4px;
+          border-radius: 3px;
+          display: inline-block;
+          width: fit-content;
+          flex-shrink: 0;
+          margin-left: 8px;
+        }
+      }
+      
+      .context-item-subtitle {
+        font-size: 0.8em;
+        color: rgba(255, 255, 255, 0.6);
+        margin-top: 2px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      
+      .context-item-remove {
+        background: none;
+        border: none;
+        color: rgba(255, 255, 255, 0.6);
+        cursor: pointer;
+        padding: 2px;
+        font-size: 14px;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 2px;
+        width: 16px;
+        height: 16px;
+
+        &:hover {
+          color: white;
+          background: rgba(255, 255, 255, 0.2);
+        }
+      }
+      
+      &.selection {
+        background: rgba(0, 122, 255, 0.15);
+        flex-direction: column;
+        align-items: flex-start;
+
+        .selection-text {
+          font-size: 11px;
+          opacity: 0.7;
+          margin-top: 2px;
+          font-style: italic;
+          white-space: pre-wrap;
+          word-break: break-word;
+        }
+
+        .context-item-remove {
+          position: absolute;
+          right: 4px;
+          top: 4px;
+        }
+      }
+      
+      .context-content, .context-url {
+        font-size: 0.8em;
+        color: #666;
+        margin-top: 4px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+} 

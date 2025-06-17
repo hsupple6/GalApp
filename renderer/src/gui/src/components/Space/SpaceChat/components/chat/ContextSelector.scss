@@ -1,0 +1,156 @@
+.context-selector {
+  position: relative;
+
+  .context-dropdown {
+    position: fixed; // Fixed position is used for viewport absolute positioning
+    z-index: 99999; // Very high z-index to appear above everything
+    margin: 0; // Remove any margins as positioning is handled in JS
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: white;
+    width: 280px; // Fixed width
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh; // Default max height, overridden by JS
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.7); // Stronger shadow for better visibility
+    overflow: hidden; // Hide overflow
+    opacity: 0; // Start invisible
+    animation: dropdownFadeIn 0.2s ease forwards; // Smooth fade-in animation
+    transform-origin: bottom left; // Animation from bottom-left corner
+
+    @keyframes dropdownFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(5px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .context-dropdown-header {
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 8px;
+
+      .context-search-input {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        padding: 6px 8px;
+        color: white;
+        font-size: 13px;
+
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.5);
+        }
+
+        &:focus {
+          outline: none;
+          border-color: rgba(0, 122, 255, 0.6);
+        }
+      }
+    }
+
+    .context-dropdown-content {
+      overflow-y: auto;
+      max-height: calc(100% - 50px); // Allow content to take most of the space
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-right: 5px; // Add padding for scrollbar
+      scrollbar-width: thin;
+
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 3px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      .context-entity-group {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+
+        .context-entity-group-header {
+          font-size: 12px;
+          font-weight: 600;
+          color: rgba(255, 255, 255, 0.5);
+          padding: 4px 4px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          margin-bottom: 4px;
+          text-transform: uppercase;
+        }
+      }
+
+      .context-entity {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 10px;
+        border: none;
+        background: none;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 13px;
+        cursor: pointer;
+        text-align: left;
+        border-radius: 4px;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.1);
+          color: white;
+        }
+
+        .entity-name {
+          font-weight: 500;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          max-width: 65%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+          .entity-icon {
+            font-size: 14px;
+            opacity: 0.8;
+          }
+        }
+
+        .entity-type {
+          font-size: 11px;
+          opacity: 0.6;
+          background: rgba(255, 255, 255, 0.1);
+          padding: 2px 6px;
+          border-radius: 10px;
+          white-space: nowrap;
+        }
+      }
+
+      .context-dropdown-empty {
+        padding: 12px;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.5);
+        font-style: italic;
+        font-size: 13px;
+      }
+    }
+  }
+} 

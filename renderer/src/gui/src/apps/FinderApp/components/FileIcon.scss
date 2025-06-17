@@ -1,0 +1,87 @@
+.file-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  &.small {
+    width: 16px;
+    height: 16px;
+    
+    .file-icon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+  
+  &.medium {
+    width: 20px;
+    height: 20px;
+    
+    .file-icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  
+  &.large {
+    width: 48px;
+    height: 48px;
+    
+    .file-icon {
+      width: 48px;
+      height: 48px;
+    }
+  }
+}
+
+.file-icon {
+  color: #666;
+  
+  &.folder {
+    color: #1e88e5;
+  }
+  
+  &.image {
+    color: #43a047;
+  }
+  
+  &.video {
+    color: #8e24aa;
+  }
+  
+  &.audio {
+    color: #fb8c00;
+  }
+  
+  &.code {
+    color: #0277bd;
+  }
+  
+  &.archive {
+    color: #6d4c41;
+  }
+  
+  &.pdf {
+    color: #e53935;
+  }
+  
+  &.document {
+    color: #039be5;
+  }
+  
+  &.spreadsheet {
+    color: #43a047;
+  }
+  
+  &.presentation {
+    color: #fb8c00;
+  }
+  
+  &.text {
+    color: #757575;
+  }
+  
+  &.executable {
+    color: #212121;
+  }
+} 

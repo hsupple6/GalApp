@@ -1,0 +1,238 @@
+.data-table-container {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding: 10px;
+  
+  .view-mode-selector {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    
+    .view-mode-label {
+      font-weight: 500;
+      margin-right: 15px;
+      color: #444;
+    }
+    
+    .view-mode-buttons {
+      display: flex;
+      gap: 5px;
+      
+      .view-mode-button {
+        padding: 6px 12px;
+        border: 1px solid #ddd;
+        background-color: white;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
+        
+        &:hover {
+          background-color: #f5f5f5;
+        }
+        
+        &.active {
+          background-color: #4a6da7;
+          color: white;
+          border-color: #4a6da7;
+        }
+      }
+    }
+  }
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  
+  th, td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .bids-compliant {
+    background-color: #e6f3ff;
+    
+    &:hover {
+      background-color: #d6ecff;
+    }
+  }
+  
+  .virtual-scan {
+    background-color: #fdf7e2;
+    
+    &:hover {
+      background-color: #fcf3d5;
+    }
+  }
+  
+  .brain-scan-thumbnail {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 3px;
+  }
+  
+  .modality-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    background-color: #e9ecef;
+    border-radius: 3px;
+    font-weight: 500;
+    color: #495057;
+  }
+  
+  .missing-source {
+    display: inline-block;
+    padding: 3px 8px;
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    border-radius: 3px;
+    color: #856404;
+    font-style: italic;
+    font-size: 0.85rem;
+  }
+  
+  .other-derivations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    
+    .pipeline-badge {
+      padding: 2px 6px;
+      font-size: 0.8rem;
+    }
+  }
+  
+  .status-badge {
+    display: inline-block;
+    padding: 3px 6px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    
+    &.raw {
+      background-color: #f8f9fa;
+      border: 1px solid #dee2e6;
+      color: #6c757d;
+    }
+    
+    &.organized {
+      background-color: #e3f2fd;
+      border: 1px solid #bbdefb;
+      color: #0d47a1;
+    }
+    
+    &.analyzed {
+      background-color: #e8f5e9;
+      border: 1px solid #c8e6c9;
+      color: #2e7d32;
+    }
+    
+    &.error {
+      background-color: #ffebee;
+      border: 1px solid #ffcdd2;
+      color: #c62828;
+    }
+    
+    &.complete {
+      background-color: #e8f5e9;
+      border: 1px solid #c8e6c9;
+      color: #2e7d32;
+    }
+    
+    &.failed {
+      background-color: #ffebee;
+      border: 1px solid #ffcdd2;
+      color: #c62828;
+    }
+    
+    &.pending {
+      background-color: #fff8e1;
+      border: 1px solid #ffecb3;
+      color: #f57f17;
+    }
+    
+    &.running {
+      background-color: #e1f5fe;
+      border: 1px solid #b3e5fc;
+      color: #0277bd;
+    }
+  }
+  
+  .processing-steps {
+    margin-top: 4px;
+    font-size: 0.7rem;
+    color: #666;
+  }
+  
+  .empty-table-message {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-style: italic;
+  }
+  
+  .pipeline-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    
+    &.freesurfer {
+      background-color: #CCE5FF;
+      color: #0066CC;
+    }
+    
+    &.fsl {
+      background-color: #D4EDDA;
+      color: #155724;
+    }
+    
+    &.spm {
+      background-color: #FFE6CC;
+      color: #994C00;
+    }
+    
+    &.ants {
+      background-color: #D6D8DB;
+      color: #383D41;
+    }
+    
+    &.unknown {
+      background-color: #F8F9FA;
+      color: #6C757D;
+    }
+  }
+  
+  .view-details-button {
+    padding: 4px 8px;
+    background-color: #f1f3f6;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background-color: #e2e6ea;
+    }
+  }
+} 

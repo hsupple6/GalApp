@@ -1,0 +1,179 @@
+.notes-app-namespace {
+  .notes-toolbar {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-secondary);
+    border-bottom: 1px solid var(--border-color);
+    padding: 8px 12px;
+    
+    .toolbar-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+    
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      flex: 0 0 auto;
+      min-width: 0;
+      margin-right: 16px;
+      
+      .back-button {
+        padding: 4px 8px 4px 0;
+        background-color: transparent;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        color: var(--accent-color);
+        font-weight: 500;
+        flex-shrink: 0;
+        
+        &:hover {
+          opacity: 0.8;
+        }
+        
+        i.icon-back {
+          font-style: normal;
+          font-size: 16px;
+        }
+      }
+      
+      .note-title {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-normal);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-left: 4px;
+        max-width: 200px;
+      }
+    }
+    
+    .toolbar-right {
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+      
+      &::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+      }
+    }
+    
+    .toolbar-group {
+      display: flex;
+      margin-right: 12px;
+      
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    
+    .toolbar-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      margin: 0 1px;
+      background: transparent;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      
+      &:hover {
+        background-color: var(--background-hover);
+      }
+      
+      &:active, &.active {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+      
+      i {
+        font-style: normal;
+        font-size: 12px;
+        color: var(--text-normal);
+        
+        &.icon-bold {
+          font-weight: bold;
+        }
+        
+        &.icon-italic {
+          font-style: italic;
+        }
+        
+        &.icon-code {
+          font-family: monospace;
+          font-size: 11px;
+        }
+        
+        &.icon-h1, &.icon-h2, &.icon-h3 {
+          font-weight: bold;
+        }
+        
+        &.icon-h1 {
+          font-size: 14px;
+        }
+        
+        &.icon-h2 {
+          font-size: 12px;
+        }
+        
+        &.icon-h3 {
+          font-size: 11px;
+        }
+      }
+    }
+    
+    // Apple Notes-like styling
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--background-secondary);
+      border-color: var(--border-color);
+      
+      .toolbar-left {
+        .back-button {
+          color: var(--accent-color);
+        }
+        
+        .note-title {
+          color: var(--text-normal);
+        }
+      }
+      
+      .toolbar-button i {
+        color: var(--text-normal);
+      }
+      
+      .toolbar-button:hover {
+        background-color: var(--background-hover);
+      }
+      
+      .toolbar-button:active, .toolbar-button.active {
+        background-color: rgba(255, 255, 255, 0.15);
+      }
+    }
+  }
+  
+  // Separator between toolbar groups
+  .toolbar-group:not(:last-child)::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 16px;
+    background-color: var(--border-color);
+    margin: 0 6px;
+    
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--border-color);
+    }
+  }
+} 

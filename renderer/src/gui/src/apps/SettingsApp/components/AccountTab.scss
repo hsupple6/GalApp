@@ -1,0 +1,332 @@
+.account-settings {
+  padding: 1.5rem;
+
+  section {
+    margin-bottom: 2rem;
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #111827;
+
+      @media (prefers-color-scheme: dark) {
+        color: white;
+      }
+    }
+  }
+
+  .user-profile {
+    .loading, .error {
+      padding: 1rem;
+      border-radius: 8px;
+      background-color: #f3f4f6;
+      color: #6b7280;
+
+      @media (prefers-color-scheme: dark) {
+        background-color: #374151;
+        color: #9ca3af;
+      }
+    }
+
+    .error {
+      background-color: #fee2e2;
+      color: #dc2626;
+
+      @media (prefers-color-scheme: dark) {
+        background-color: rgba(220, 38, 38, 0.1);
+        color: #f87171;
+      }
+    }
+
+    .profile-content {
+      .profile-header {
+        display: flex;
+        gap: 1.5rem;
+        align-items: flex-start;
+
+        .profile-picture {
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        .profile-info {
+          flex: 1;
+
+          .display-name {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+
+            h4 {
+              font-size: 1.25rem;
+              font-weight: 600;
+              margin: 0;
+              color: #111827;
+
+              @media (prefers-color-scheme: dark) {
+                color: white;
+              }
+            }
+
+            .edit-button {
+              padding: 0.25rem 0.75rem;
+              background-color: #f3f4f6;
+              border: 1px solid #d1d5db;
+              border-radius: 6px;
+              font-size: 0.875rem;
+              color: #374151;
+              cursor: pointer;
+              transition: all 0.2s;
+
+              &:hover {
+                background-color: #e5e7eb;
+              }
+
+              @media (prefers-color-scheme: dark) {
+                background-color: #374151;
+                border-color: #4b5563;
+                color: #d1d5db;
+
+                &:hover {
+                  background-color: #4b5563;
+                }
+              }
+            }
+          }
+
+          .email {
+            font-size: 0.875rem;
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+
+            @media (prefers-color-scheme: dark) {
+              color: #9ca3af;
+            }
+
+            .verified-badge {
+              color: #059669;
+              font-weight: bold;
+
+              @media (prefers-color-scheme: dark) {
+                color: #34d399;
+              }
+            }
+          }
+
+          .edit-name {
+            margin-bottom: 0.5rem;
+
+            input {
+              width: 100%;
+              padding: 0.5rem;
+              border: 1px solid #d1d5db;
+              border-radius: 6px;
+              font-size: 1rem;
+              margin-bottom: 0.5rem;
+
+              &:focus {
+                outline: none;
+                border-color: #3b82f6;
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+              }
+
+              @media (prefers-color-scheme: dark) {
+                background-color: #374151;
+                border-color: #4b5563;
+                color: white;
+
+                &:focus {
+                  border-color: #60a5fa;
+                }
+              }
+            }
+
+            .edit-actions {
+              display: flex;
+              gap: 0.5rem;
+
+              button {
+                padding: 0.5rem 1rem;
+                border-radius: 6px;
+                font-size: 0.875rem;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.2s;
+              }
+
+              .save-button {
+                background-color: #3b82f6;
+                color: white;
+                border: none;
+
+                &:hover {
+                  background-color: #2563eb;
+                }
+              }
+
+              .cancel-button {
+                background-color: #f3f4f6;
+                color: #374151;
+                border: 1px solid #d1d5db;
+
+                &:hover {
+                  background-color: #e5e7eb;
+                }
+
+                @media (prefers-color-scheme: dark) {
+                  background-color: #374151;
+                  border-color: #4b5563;
+                  color: #d1d5db;
+
+                  &:hover {
+                    background-color: #4b5563;
+                  }
+                }
+              }
+            }
+          }
+
+          .edit-name-inline {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+
+            input {
+              flex: 1;
+              padding: 0.5rem;
+              border: 1px solid #d1d5db;
+              border-radius: 6px;
+              font-size: 1rem;
+
+              &:focus {
+                outline: none;
+                border-color: #3b82f6;
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+              }
+
+              @media (prefers-color-scheme: dark) {
+                background-color: #374151;
+                border-color: #4b5563;
+                color: white;
+
+                &:focus {
+                  border-color: #60a5fa;
+                }
+              }
+            }
+
+            button {
+              padding: 0.25rem 0.75rem;
+              border-radius: 6px;
+              font-size: 0.875rem;
+              cursor: pointer;
+              transition: all 0.2s;
+              white-space: nowrap;
+            }
+
+            .save-button {
+              background-color: #3b82f6;
+              color: white;
+              border: none;
+
+              &:hover {
+                background-color: #2563eb;
+              }
+            }
+
+            .cancel-button {
+              background-color: #f3f4f6;
+              color: #374151;
+              border: 1px solid #d1d5db;
+
+              &:hover {
+                background-color: #e5e7eb;
+              }
+
+              @media (prefers-color-scheme: dark) {
+                background-color: #374151;
+                border-color: #4b5563;
+                color: #d1d5db;
+
+                &:hover {
+                  background-color: #4b5563;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .dock-preferences {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+
+    .dock-apps {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .dock-app-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      cursor: move;
+
+      &.dragging {
+        opacity: 0.5;
+      }
+
+      .app-name {
+        color: #fff;
+      }
+
+      .visibility-toggle {
+        background: none;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        padding: 0.25rem;
+        border-radius: 4px;
+        transition: background-color 0.2s;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.1);
+        }
+
+        &.hidden {
+          opacity: 0.5;
+        }
+      }
+    }
+
+    .reset-button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+    }
+  }
+} 

@@ -1,0 +1,119 @@
+.settings-modal {
+  position: absolute;
+  right: 0;
+  top: 48px;
+  width: 400px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e1e1e1;
+  z-index: 1000;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid #e1e1e1;
+
+    h3 {
+      font-size: 18px;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .close-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #666;
+      
+      &:hover {
+        color: #333;
+      }
+    }
+  }
+
+  &__tabs {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    border-bottom: 1px solid #e1e1e1;
+
+    .tab {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #666;
+      padding: 4px 0;
+
+      &.active {
+        color: #0066ff;
+      }
+
+      &:hover {
+        color: #333;
+      }
+    }
+  }
+
+  &__content {
+    padding: 16px;
+  }
+}
+
+.integrations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.integration-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+
+  .integration-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .integration-icon {
+      font-size: 24px;
+    }
+
+    .integration-details {
+      h4 {
+        margin: 0;
+        font-weight: 500;
+      }
+
+      p {
+        margin: 4px 0 0;
+        font-size: 14px;
+        color: #666;
+      }
+    }
+  }
+
+  .add-button {
+    background: #0066ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+
+    &:hover {
+      background: #0052cc;
+    }
+  }
+}
+
+.account-settings {
+  color: #666;
+} 

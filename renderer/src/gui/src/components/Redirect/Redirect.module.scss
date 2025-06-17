@@ -1,0 +1,93 @@
+.redirectContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #1a1a1a;
+  padding: 20px;
+}
+
+.redirectWrapper {
+  background-color: #2a2a2a;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.logoContainer {
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+}
+
+.welcomeText {
+  font-size: 24px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.redirectContent {
+  margin-bottom: 30px;
+  color: #ccc;
+
+  p {
+    margin: 10px 0;
+  }
+}
+
+.errorMessage {
+  color: #ff6b6b;
+  font-weight: 500;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: rgba(255, 107, 107, 0.1);
+  border-radius: 4px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.redirectButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .redirectWrapper {
+    padding: 0 20px;
+  }
+
+  .welcomeText {
+    font-size: 1.5rem;
+  }
+
+  .redirectContent {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "gal_egui",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "gal_egui_bg.wasm",
+    "gal_egui.js",
+    "gal_egui.d.ts"
+  ],
+  "main": "gal_egui.js",
+  "types": "gal_egui.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

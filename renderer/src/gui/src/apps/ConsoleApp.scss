@@ -1,0 +1,39 @@
+.commandConsole {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .titleBar {
+        height: 20px;
+        background-color: #1e1e1e;
+    }
+}
+.xterm-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #1e1e1e; /* Ensure a dark background */
+    overflow: hidden;
+}
+
+.xterm {
+    display: block;
+    background-color: #1e1e1e;
+}
+.xterm .xterm-viewport {
+    background-color: #1e1e1e !important;
+}
+
+.xterm div{
+    color: #49ee88;
+    font-family: monospace, monospace !important;
+}
+
+
+.xterm textarea {
+    autocomplete: off;
+    spellcheck: false;
+    inputmode: none;
+}
+  

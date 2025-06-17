@@ -1,0 +1,80 @@
+.neurvana-app {
+  display: flex;
+  height: inherit;
+  min-height: 100%;
+  width: 100%;
+  overflow: hidden;
+  
+  .neurvana-app-main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    
+    .neurvana-app-sidebar {
+      width: 250px;
+      background-color: #252526;
+      border-right: 1px solid #3c3c3c;
+      overflow-y: auto;
+      height: 100%;
+    }
+    
+    .neurvana-app-content-wrapper {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      overflow: hidden;
+    }
+    
+    .neurvana-app-content {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+    }
+  }
+  
+  .neurvana-app-header {
+    display: flex;
+    align-items: center;
+    background-color: #252526;
+    height: 48px; // same as explorer header
+    padding: 0 8px;
+    border-bottom: 1px solid #3c3c3c;
+    
+    .sidebar-toggle {
+      background: none;
+      border: none;
+      color: #cccccc;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 4px 8px;
+      margin-right: 10px;
+      
+      &:hover {
+        background-color: #3c3c3c;
+      }
+    }
+  }
+}
+
+// Light theme styles
+.light-theme .neurvana-app {
+  .neurvana-app-header {
+    background-color: #f3f3f3;
+    border-bottom: 1px solid #e0e0e0;
+    
+    .sidebar-toggle {
+      color: #333;
+      
+      &:hover {
+        background-color: #e0e0e0;
+      }
+    }
+  }
+  
+  .neurvana-app-main {
+    .neurvana-app-sidebar {
+      background-color: #f3f3f3;
+      border-right: 1px solid #e0e0e0;
+    }
+  }
+} 

@@ -1,0 +1,36 @@
+.pdf-search-panel {
+  width: 300px;
+  background: var(--pdf-search-bg, #1a1a1a);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+
+  .search-header {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      color: white;
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
+  }
+
+  .search-results {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+  }
+
+  .search-result {
+    padding: 0.5rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+} 

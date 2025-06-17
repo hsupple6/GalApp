@@ -1,0 +1,56 @@
+.hierarchicalList {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  user-select: none; /* Disable text selection during interactions */
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  /* Neutral row background */
+  background-color: #ffffff;
+
+  /* Hover effect */
+  &:hover {
+      background-color: #f0f0f0;
+  }
+
+  /* Selected row */
+  &.selected {
+      background-color: #e6f7ff;
+      // border-left: 4px solid #1890ff;
+  }
+
+  /* Dragged row */
+  &.dragging {
+      opacity: 0.6;
+      background-color: #d9f7be;
+      // border-left: 4px solid #52c41a;
+  }
+
+  /* Drop target indicator */
+  &.dropTarget {
+    background-color: #ffeca2; /* Light yellow for drop target */
+    border: 2px dashed #faad14; /* Dashed border for visual cue */
+  }
+}
+
+.caret {
+  margin-right: 8px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.name {
+  flex: 1; /* Let the name fill the remaining space */
+}
+
+.details {
+  color: #888;
+  font-size: 12px;
+}

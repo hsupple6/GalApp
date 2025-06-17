@@ -1,0 +1,69 @@
+.tab-group {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  min-width: 0; // Allow shrinking
+  overflow-x: auto; // Scroll if needed
+  overflow-y: hidden;
+  padding: 2px;
+  
+  &::-webkit-scrollbar {
+    display: none; // Hide scrollbar
+  }
+  
+  .tab {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap; // Prevent text wrapping
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.03);
+    transition: background-color 0.2s ease;
+    gap: 8px;
+    
+    .tab-title {
+      flex: 1;
+    }
+    
+    .tab-close {
+      opacity: 0;
+      border: none;
+      background: none;
+      color: #666;
+      font-size: 14px;
+      padding: 2px 4px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.2s;
+      
+      &:hover {
+        background: rgba(0, 0, 0, 0.1);
+        color: #000;
+      }
+    }
+    
+    &:hover .tab-close {
+      opacity: 1;
+    }
+    
+    &.active .tab-close {
+      opacity: 1;
+    }
+    
+    &:hover {
+      background: rgba(0, 0, 0, 0.09);
+    }
+    
+    &.active {
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      
+      &:hover {
+        background: white;
+      }
+    }
+  }
+}

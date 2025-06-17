@@ -1,0 +1,45 @@
+.sourceEntities {
+  margin-top: 16px;
+  
+  .sourceEntity {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    background: rgba(59, 130, 246, 0.05);
+    
+    div {
+      font-size: 14px;
+      line-height: 20px;
+      margin-bottom: 4px;
+      color: var(--chat-text-primary);
+      
+      strong {
+        font-weight: 500;
+        color: var(--chat-primary);
+      }
+    }
+    
+    span {
+      font-size: 13px;
+      line-height: 18px;
+      color: var(--chat-text-secondary);
+    }
+    
+    .date {
+      font-size: 12px;
+      font-style: italic;
+      opacity: 0.8;
+    }
+    
+    &.sourceEmail {
+      border-left: 3px solid #38bdf8; /* Light blue for email */
+    }
+    
+    &.sourceAppleNote {
+      border-left: 3px solid #0ea5e9; /* Sky blue for notes */
+    }
+  }
+}
