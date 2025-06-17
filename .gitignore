@@ -1,6 +1,10 @@
 node_modules/
 build/
 dist/
+GalApp-darwin-arm64/
+*.dmg
+*.asar
+*.app
 .DS_Store
 *.log
 electron-store.json
