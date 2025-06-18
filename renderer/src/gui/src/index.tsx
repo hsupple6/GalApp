@@ -60,6 +60,33 @@ const TokenHandler: React.FC<{ children: React.ReactNode }> = ({ children }) => 
   return <>{children}</>;
 };
 
+// Add simple login method as alternative
+const loginWithCredentials = async (username: string, password: string) => {
+  try {
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      localStorage.setItem('authToken', data.access_token);
+      
+      if (data.user) {
+        // Handle setting user data
+      }
+    } else {
+      throw new Error('Invalid credentials');
+    }
+  } catch (error) {
+    console.error('Login error:', error);
+    throw error;
+  }
+};
+
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 // const portalRoot = document.createElement('div');

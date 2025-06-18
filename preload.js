@@ -13,7 +13,9 @@ contextBridge.exposeInMainWorld('electronAPI', {
   updateEnvFile: (key, value) => ipcRenderer.invoke('update-env-file', key, value),
   getGalaxies: () => ipcRenderer.invoke('get-galaxies'),
   addGalaxy: (ip, galID) => ipcRenderer.invoke('add-galaxy', ip, galID),
-  pingip: (ip) => ipcRenderer.invoke('pingip', ip)
+  pingip: (ip) => ipcRenderer.invoke('pingip', ip),
+  auth0Login: (config) => ipcRenderer.invoke('auth0-login', config),
+  auth0ExchangeCode: (config) => ipcRenderer.invoke('auth0-exchange-code', config)
 });
 
 contextBridge.exposeInMainWorld('api', {

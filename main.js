@@ -675,6 +675,44 @@ ipcMain.handle('add-galaxy', async (event, ip, galID) => {
   return true;
 });
 
+// System Browser Auth0 login (alternative approach)
+ipcMain.handle('auth0-login-system-browser', async (event, { domain, clientId, audience }) => {
+  const { shell } = require('electron');
+  
+  // Generate state and code verifier for PKCE
+  const crypto = require('crypto');
+  const state = crypto.randomBytes(32).toString('hex');
+  const codeVerifier = crypto.randomBytes(32).toString('base64url');
+  const codeChallenge = crypto.createHash('sha256').update(codeVerifier).digest('base64url');
+  
+  // Store these for later verification
+  global.auth0State = { state, codeVerifier };
+  
+  const authUrl = `https://${domain}/authorize?` +
+    `client_id=${clientId}&` +
+    `redirect_uri=${encodeURIComponent('galapp://auth/callback')}&` +
+    `response_type=code&` +
+    `scope=openid profile email offline_access&` +
+    `audience=${audience}&` +
+    `state=${state}&` +
+    `code_challenge=${codeChallenge}&` +
+    `code_challenge_method=S256`;
+
+  // Open in system browser
+  shell.openExternal(authUrl);
+  
+  return { success: true, message: 'Auth opened in system browser' };
+});
+
+// Handle deep link callback (you'd need to register galapp:// scheme)
+app.setAsDefaultProtocolClient('galapp');
+
+app.on('open-url', (event, url) => {
+  console.log('Deep link received:', url);
+  // Parse the callback URL and handle the auth code
+  // This would complete the authentication flow
+});
+
 app.whenReady().then(() => {
   createWindow();
   startGalOSServer(); // Start the galOS GUI server

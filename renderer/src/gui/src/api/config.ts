@@ -9,8 +9,9 @@ const getWebsocketUrl = () => {
   const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
   
   // For production, use the websocket-server LoadBalancer URL from environment variable
+  // Add fallback to prevent undefined hostname
   const host = process.env.REACT_APP_GALBOX_IP || 
-    (isLocalhost ? process.env.REACT_APP_GALBOX_IP : window.location.hostname);
+    (isLocalhost ? 'localhost' : window.location.hostname);
   
   // Always use port 1234
   const port = '1234';

@@ -56,7 +56,7 @@ function AppBody() {
   const sendGalBoxIPToGalOS = async () => {
     try {
       // Get the GalBox IP from config
-      const galboxIP = config.GALBOX_IP;
+      const galboxIP = process.env.GALBOX_IP;
       if (galboxIP) {
         console.log('Sending GalBox IP to galOS GUI:', galboxIP);
         const response = await fetch('http://localhost:3000/api/set-galbox-ip', {
